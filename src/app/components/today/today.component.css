@@ -1,0 +1,78 @@
+.today-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  height: 100%;
+  margin: 20px;
+}
+
+h1,
+h2 {
+  margin: 0px;
+}
+
+.mood {
+  display: flex;
+  justify-content: center;
+}
+
+.mood span {
+  width: 90px;
+}
+
+.mood mat-icon {
+  font-size: 90px;
+}
+
+.happy {
+  color: rgb(15, 107, 38);
+}
+
+.medium {
+  color: rgb(255, 242, 53);
+}
+
+.sad {
+  color: rgb(235, 49, 29);
+}
+
+.author {
+  text-align: right;
+}
+
+.comment {
+  display: flex;
+  justify-content: center;
+}
+
+textarea {
+  height: 100px;
+  border-radius: 15px;
+  width: 400px;
+  margin-bottom: 10px;
+  padding: 5px;
+}
+
+.save {
+  width: 50%;
+  height: 50px;
+  border-radius: 10px;
+}
+
+.inputs {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.quote-credit a {
+  font-size: 8px;
+  text-decoration: none;
+  color: rgb(79, 79, 79);
+}
+
+.quote-credit a:visited {
+  color: rgb(79, 79, 79);
+}

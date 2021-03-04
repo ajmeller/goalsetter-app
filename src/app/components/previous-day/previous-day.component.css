@@ -1,0 +1,13 @@
+.previous-day-container {
+  display: flex;
+  align-items: center;
+  width: 100vw;
+  height: 100px;
+  background-color: gray;
+  opacity: 0.2;
+  border-top: 0;
+}
+
+.previous-day-container :hover {
+  opacity: 1;
+}

@@ -1,1 +1,40 @@
-<p>today works!</p>
+<div class="today-container">
+  <div class="previous-day-preview"><app-previous-day></app-previous-day></div>
+  <mat-icon class="mobile-menu">menu</mat-icon>
+  <h1 class="welcome">Good Evening!</h1>
+  <h2 class="date">Tues. March 2nd</h2>
+  <div class="inputs">
+    <div class="checkmark"></div>
+    <div class="mood">
+      <span><mat-icon class="happy">mood</mat-icon></span>
+      <span><mat-icon class="medium">sentiment_dissatisfied</mat-icon></span>
+      <span><mat-icon class="sad">sentiment_very_dissatisfied</mat-icon></span>
+    </div>
+    <div class="comment">
+      <textarea
+        name="comment"
+        id="comment"
+        placeholder="Enter a comment for today..."
+      ></textarea>
+    </div>
+    <button class="save">Save</button>
+  </div>
+  <div class="quote-container">
+    <div class="quote">"{{ quote.quote }}"</div>
+    <div class="author">{{ quote.author }}</div>
+  </div>
+  <div class="quote-credit">
+    <img
+      src="https://theysaidso.com/branding/theysaidso.png"
+      height="10"
+      width="10"
+      alt="theysaidso.com"
+    />
+    <a
+      href="https://theysaidso.com"
+      title="Powered by quotes from theysaidso.com"
+    >
+      They Said So
+    </a>
+  </div>
+</div>

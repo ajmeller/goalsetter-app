@@ -5,9 +5,17 @@
   height: 100px;
   background-color: gray;
   opacity: 0.2;
-  border-top: 0;
+  margin-top: 0;
+  
+}
+.hide{
+  display: none;
+  pointer-events: none;
 }
 
-.previous-day-container :hover {
+
+
+/* will add this feature on the desktop version */
+/* .previous-day-container:hover {
   opacity: 1;
-}
+} */

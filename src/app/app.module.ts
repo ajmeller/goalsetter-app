@@ -10,6 +10,7 @@ import { LoginComponent } from './components/login/login.component';
 import { PreviousDayComponent } from './components/previous-day/previous-day.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+
 @NgModule({
   declarations: [
     AppComponent,

@@ -6,10 +6,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./previous-day.component.css']
 })
 export class PreviousDayComponent implements OnInit {
-
+  isShow = true;
   constructor() { }
 
   ngOnInit(): void {
+  }
+  toggleDays(){
+    this.isShow = !this.isShow 
   }
 
 }

@@ -1,0 +1,43 @@
+.login{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 100vw;
+
+}
+
+.userPass{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 10px;
+    justify-content: space-between;
+    height: 100px;
+    width: 75%;
+}
+
+input {
+    border: none;
+    border-bottom: 2px solid;
+    background-color: skyblue;
+    text-align: center;
+    width: 300px;    
+}
+
+.submit {
+    border-radius: 5px;
+}
+
+/* tablet screen size */
+/* @media only screen and (min-width: 768px){
+    input{
+        width: 678px;
+    }
+} */
+
+/* desktop screen size */
+/* @media only screen and (min-width: 1200px){
+    
+} */

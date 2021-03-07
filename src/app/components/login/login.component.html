@@ -1,8 +1,15 @@
 <form action="" class="login">
-    <h1>Welcome!</h1>
-    <div class="userPass">
-        <input type="text" placeholder="username">
-        <input type="text" placeholder="password">
-    </div>
-    <button class="submit" routerLink="/today">GO!</button>
+  <h1>Welcome!</h1>
+  <div class="userPass">
+    <input type="text" placeholder="username" />
+    <input type="text" placeholder="password" />
+  </div>
+  <button class="submit" routerLink="/today">GO!</button>
+  <button class="google" (click)="loginWithGoogle()">
+    <span
+      ><img
+        src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg"
+      />Sign In With Google</span
+    >
+  </button>
 </form>

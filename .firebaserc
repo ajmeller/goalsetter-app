@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "goal-setter-42c4f": {
+      "hosting": {
+        "goalsetter": [
+          "goal-setter-42c4f"
+        ]
+      }
+    }
+  }
+}

@@ -1,11 +1,4 @@
-import { Component, OnDestroy, OnInit, PLATFORM_ID } from '@angular/core';
-import { AngularFireAuth } from '@angular/fire/auth';
-import firebase from 'firebase/app';
-import { Subscription } from 'rxjs';
-import { map } from 'rxjs/operators';
-import { trace } from '@angular/fire/performance';
-import { Inject } from '@angular/core';
-import { isPlatformServer } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({

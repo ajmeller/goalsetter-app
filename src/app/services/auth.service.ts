@@ -1,5 +1,5 @@
 import { Injectable, NgZone } from '@angular/core';
-import { auth } from 'firebase/app';
+import firebase from 'firebase/app';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { User } from '../models/user.interface';
 import { Router } from '@angular/router';
@@ -12,12 +12,15 @@ import {
   providedIn: 'root',
 })
 export class AuthService {
-  //user: User = { uid: '', email: '', displayName: '' };
+  user: User = { uid: '', email: '', displayName: '' };
 
   userData: any;
 
   parseUserData() {
-    return JSON.parse(localStorage.getItem('user'));
+    const userStorage = localStorage.getItem('user');
+    if (userStorage) {
+      return JSON.parse(userStorage);
+    }
   }
 
   constructor(
@@ -32,7 +35,7 @@ export class AuthService {
         localStorage.setItem('user', JSON.stringify(this.userData));
         this.parseUserData();
       } else {
-        localStorage.setItem('user', null);
+        localStorage.setItem('user', '');
         this.parseUserData();
       }
     });
@@ -41,7 +44,7 @@ export class AuthService {
   login(email: string, password: string) {
     return this.afAuth
       .signInWithEmailAndPassword(email, password)
-      .then((result) => {
+      .then((result: any) => {
         this.ngZone.run(() => {
           this.router.navigate(['today']);
         });
@@ -55,7 +58,7 @@ export class AuthService {
   register(email: string, password: string) {
     return this.afAuth
       .createUserWithEmailAndPassword(email, password)
-      .then((result) => {
+      .then((result: any) => {
         this.setUserData(result.user);
       })
       .catch((error) => {
@@ -69,13 +72,13 @@ export class AuthService {
   }
 
   googleAuth() {
-    return this.authLogin(new auth.GoogleAuthProvider());
+    return this.authLogin(new firebase.auth.GoogleAuthProvider());
   }
 
-  authLogin(provider) {
+  authLogin(provider: any) {
     return this.afAuth
       .signInWithPopup(provider)
-      .then((result) => {
+      .then((result: any) => {
         this.ngZone.run(() => {
           this.router.navigate(['today']);
         });
@@ -90,11 +93,14 @@ export class AuthService {
     const userRef: AngularFirestoreDocument<any> = this.afs.doc(
       `users/${user.uid}`
     );
+
     const userData: User = {
       uid: user.uid,
       email: user.email,
       displayName: user.displayName,
     };
+
+    this.user = userData;
 
     return userRef.set(userData, {
       merge: true,

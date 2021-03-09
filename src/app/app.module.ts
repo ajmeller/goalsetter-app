@@ -14,6 +14,7 @@ import { LoginComponent } from './components/login/login.component';
 import { PreviousDayComponent } from './components/previous-day/previous-day.component';
 import { AuthService } from './services/auth.service';
 import { QuotesService } from './services/quotes.service';
+import { DailyService } from './services/daily.service';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,7 @@ import { QuotesService } from './services/quotes.service';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
   ],
-  providers: [AuthService, QuotesService],
+  providers: [AuthService, QuotesService, DailyService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

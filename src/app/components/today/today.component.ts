@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { QuotesService } from 'src/app/services/quotes.service';
 import { Quote } from 'src/app/models/quote.interface';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-today',
@@ -8,7 +9,10 @@ import { Quote } from 'src/app/models/quote.interface';
   styleUrls: ['./today.component.css'],
 })
 export class TodayComponent implements OnInit {
-  constructor(private quotesService: QuotesService) {}
+  constructor(
+    private quotesService: QuotesService,
+    private authService: AuthService
+  ) {}
 
   quote: Quote = { quote: '', author: '' };
 

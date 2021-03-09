@@ -1,33 +1,39 @@
-.login{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    width: 100vw;
-
+.login {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 100vw;
 }
 
-.userPass{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    padding: 10px;
-    justify-content: space-between;
-    height: 100px;
-    width: 75%;
+.userPass {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 10px;
+  justify-content: space-between;
+  height: 100px;
+  width: 75%;
 }
 
 input {
-    border: none;
-    border-bottom: 2px solid;
-    background-color: skyblue;
-    text-align: center;
-    width: 300px;    
+  border: none;
+  border-bottom: 2px solid;
+  background-color: skyblue;
+  text-align: center;
+  width: 300px;
 }
 
 .submit {
-    border-radius: 5px;
+  border-radius: 5px;
+}
+
+.google {
+  font-size: 14px;
+  padding-left: 16px;
+  text-transform: none;
+  vertical-align: middle;
 }
 
 /* tablet screen size */

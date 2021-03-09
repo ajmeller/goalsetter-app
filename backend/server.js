@@ -1,6 +1,5 @@
 const express = require("express");
 const daily = require("./routes/daily");
-const auth = require("./routes/auth");
 const cors = require("cors");
 const app = express();
 

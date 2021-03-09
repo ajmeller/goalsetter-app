@@ -6,14 +6,18 @@
   background-color: gray;
   opacity: 0.2;
   margin-top: 0;
-  
 }
-.hide{
+.hide {
   display: none;
   pointer-events: none;
 }
 
-
+.prevDay {
+  width: 100vw;
+  display: flex;
+  align-items: left;
+  flex-direction: column;
+}
 
 /* will add this feature on the desktop version */
 /* .previous-day-container:hover {

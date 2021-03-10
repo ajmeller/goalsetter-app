@@ -23,7 +23,7 @@ daily.post("/"),
     console.log(date, completed, comment, userId);
     pool
       .query(
-        `INSERT INTO daily_entries VALUES (DEFAULT, '${date}', ${completed}, '${comment}', '${userId}')`
+        `INSERT INTO daily_entries (date, completed, comment, user_id) VALUES ('${date}', ${completed}, '${comment}', '${userId}')`
       )
       .then((result) => {
         res.sendStatus(201);

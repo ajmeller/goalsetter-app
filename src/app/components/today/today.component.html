@@ -1,15 +1,23 @@
 <div class="today-container">
   <div class="previous-day-preview"><app-previous-day></app-previous-day></div>
   <div class="welcomeScreen">
-    <h1 class="welcome">Good Evening!</h1>
-    <h2 class="date">Tues. March 2nd</h2>
+    <h1 class="welcome">Good Evening, {{ user.displayName }}!</h1>
+    <h2 class="date">{{ today }}</h2>
   </div>
   <div class="inputs">
     <div class="checkmark"></div>
-    <div class="mood">
-      <span><mat-icon class="happy">mood</mat-icon></span>
-      <span><mat-icon class="medium">sentiment_dissatisfied</mat-icon></span>
-      <span><mat-icon class="sad">sentiment_very_dissatisfied</mat-icon></span>
+    <div class="mood" (click)="selectMood($event)">
+      <span><mat-icon class="happy" id="happy">mood</mat-icon></span>
+      <span
+        ><mat-icon class="medium" id="medium"
+          >sentiment_dissatisfied</mat-icon
+        ></span
+      >
+      <span
+        ><mat-icon class="sad" id="sad"
+          >sentiment_very_dissatisfied</mat-icon
+        ></span
+      >
     </div>
     <div class="comment">
       <textarea
@@ -18,7 +26,9 @@
         placeholder="Enter a comment for today..."
       ></textarea>
     </div>
-    <button class="save">Save</button>
+    <button class="save">
+      <span><mat-icon class="check">done_outline</mat-icon></span>
+    </button>
   </div>
   <div class="quote-container">
     <div class="quote">"{{ quote.quote }}"</div>

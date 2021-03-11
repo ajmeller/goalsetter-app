@@ -13,22 +13,21 @@ daily.get("/:id/:date", (req, res) => {
     .catch((err) => console.log(err));
 });
 
-daily.post("/update",
-  (req, res) => {
-    const date = req.body.date;
-    const completed = req.body.completed;
-    const comment = req.body.comment;
-    const userId = req.body.userId;
+daily.post("/update", (req, res) => {
+  const date = req.body.date;
+  const completed = req.body.completed;
+  const comment = req.body.comment;
+  const userId = req.body.userId;
+  const mood = req.body.mood;
 
-    console.log(date, completed, comment, userId);
-    pool
-      .query(
-        `INSERT INTO daily_entries (date, completed, comment, user_id) VALUES ('${date}', ${completed}, '${comment}', '${userId}')`
-      )
-      .then(result => {
-        res.sendStatus(201);
-      })
-      .catch((error) => console.log(error));
-  });
+  pool
+    .query(
+      `INSERT INTO daily_entries (date, completed, comment, user_id, mood) VALUES ('${date}', ${completed}, '${comment}', '${userId}, ${mood}')`
+    )
+    .then((result) => {
+      res.sendStatus(201);
+    })
+    .catch((error) => console.log(error));
+});
 
 module.exports = daily;

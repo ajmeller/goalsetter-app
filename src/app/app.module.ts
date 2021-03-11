@@ -15,6 +15,7 @@ import { PreviousDayComponent } from './components/previous-day/previous-day.com
 import { AuthService } from './services/auth.service';
 import { QuotesService } from './services/quotes.service';
 import { DailyService } from './services/daily.service';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { DailyService } from './services/daily.service';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    FormsModule,
     MatIconModule,
     BrowserAnimationsModule,
     AngularFireModule.initializeApp(environment.firebase),

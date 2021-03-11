@@ -12,7 +12,7 @@ import {
   providedIn: 'root',
 })
 export class AuthService {
-  user: User = { uid: '', email: '', displayName: '' };
+  user: User = { uid: '', displayName: '' };
 
   userData: any;
 
@@ -94,15 +94,12 @@ export class AuthService {
       `users/${user.uid}`
     );
 
-    const userData: User = {
+    this.user = {
       uid: user.uid,
-      email: user.email,
       displayName: user.displayName,
     };
 
-    this.user = userData;
-
-    return userRef.set(userData, {
+    return userRef.set(user, {
       merge: true,
     });
   }

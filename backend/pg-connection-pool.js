@@ -7,5 +7,4 @@ const credentials = new Pool({
   database: "d3temh9gniq1o6",
   ssl: { rejectUnauthorized: false },
 });
-
 module.exports = credentials;

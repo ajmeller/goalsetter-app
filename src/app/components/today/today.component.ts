@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { QuotesService } from 'src/app/services/quotes.service';
 import { Quote } from 'src/app/models/quote.interface';
 import { AuthService } from 'src/app/services/auth.service';
+import { DailyService } from 'src/app/services/daily.service';
+import { QuotesService } from 'src/app/services/quotes.service';
+import { User } from 'src/app/models/user.interface';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-today',
@@ -10,11 +13,15 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class TodayComponent implements OnInit {
   constructor(
-    private quotesService: QuotesService,
-    private authService: AuthService
+    private authService: AuthService,
+    private dailyService: DailyService,
+    private quotesService: QuotesService
   ) {}
 
   quote: Quote = { quote: '', author: '' };
+  user: User = { uid: '', displayName: '' };
+  today: string = moment(new Date()).format('ddd. MMMM Do, YYYY');
+  mood: string = '';
 
   getQuote() {
     this.quotesService.getQuote().subscribe((data) => {
@@ -28,7 +35,23 @@ export class TodayComponent implements OnInit {
     });
   }
 
+  selectMood(event: any) {
+    this.mood = event.target.id;
+  }
+
+  saveDailyEntry() {
+    const date = moment(new Date()).format('YYYY-MM-DD');
+    this.dailyService.updateDailyEntry(
+      date,
+      true,
+      comment,
+      this.user.uid,
+      this.mood
+    );
+  }
+
   ngOnInit(): void {
+    this.user = this.authService.user;
     this.getQuote();
   }
 }

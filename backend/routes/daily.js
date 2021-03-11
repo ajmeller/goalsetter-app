@@ -10,10 +10,10 @@ daily.get("/:id/:date", (req, res) => {
     .then((result) => {
       res.send(result.rows);
     })
-    .catch(() => console.log("error"));
+    .catch((err) => console.log(err));
 });
 
-daily.post("/"),
+daily.post("/update",
   (req, res) => {
     const date = req.body.date;
     const completed = req.body.completed;
@@ -25,10 +25,10 @@ daily.post("/"),
       .query(
         `INSERT INTO daily_entries (date, completed, comment, user_id) VALUES ('${date}', ${completed}, '${comment}', '${userId}')`
       )
-      .then((result) => {
+      .then(result => {
         res.sendStatus(201);
       })
-      .catch(() => console.log("error"));
-  };
+      .catch((error) => console.log(error));
+  });
 
 module.exports = daily;

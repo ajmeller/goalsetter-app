@@ -12,10 +12,12 @@ import { AppComponent } from './app.component';
 import { TodayComponent } from './components/today/today.component';
 import { LoginComponent } from './components/login/login.component';
 import { PreviousDayComponent } from './components/previous-day/previous-day.component';
+import { HeaderComponent } from './components/header/header.component';
 import { AuthService } from './services/auth.service';
 import { QuotesService } from './services/quotes.service';
 import { DailyService } from './services/daily.service';
 import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -23,6 +25,7 @@ import { FormsModule } from '@angular/forms';
     TodayComponent,
     LoginComponent,
     PreviousDayComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
@@ -33,6 +36,7 @@ import { FormsModule } from '@angular/forms';
     BrowserAnimationsModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
+    CommonModule
   ],
   providers: [AuthService, QuotesService, DailyService],
   bootstrap: [AppComponent],

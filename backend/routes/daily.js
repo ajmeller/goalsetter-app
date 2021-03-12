@@ -13,6 +13,18 @@ daily.get("/:id/:date", (req, res) => {
     .catch((err) => console.log(err));
 });
 
+daily.get("/:id", (req, res) => {
+  pool
+    .query(
+      // change from SELECT DISTINCT to SELECT after removing duplicates
+      `SELECT DISTINCT date FROM daily_entries WHERE user_id = '${req.params.id}' ORDER BY date DESC`
+    )
+    .then((result) => {
+      res.send(result.rows);
+    })
+    .catch((err) => console.log(err));
+});
+
 daily.post("/update", (req, res) => {
   const date = req.body.date;
   const completed = req.body.completed;

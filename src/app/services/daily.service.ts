@@ -22,6 +22,10 @@ export class DailyService {
     return this.http.get(`${this.apiUrl}/${userId}/${date}`);
   }
 
+  getAllEntries(userId: string): Observable<any> {
+    return this.http.get(`${this.apiUrl}/${userId}`);
+  }
+
   updateDailyEntry(
     date: string,
     completed: boolean,

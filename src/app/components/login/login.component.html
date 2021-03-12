@@ -1,15 +1,11 @@
 <div class="login">
-  <h1>Welcome!</h1>
-  <div class="userPass">
-    <input type="text" placeholder="username" />
-    <input type="text" placeholder="password" />
-  </div>
-  <button class="submit" routerLink="/today">GO!</button>
+  <h1>Goal Setter!</h1>
+  <h2>Welcome!</h2>
   <button class="google" (click)="loginWithGoogle()">
-    <span
-      ><img
-        src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg"
-      />Sign In With Google</span
-    >
+    <img
+      class="google-logo"
+      src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg"
+    />
+    <span class="google">Sign In With Google</span>
   </button>
 </div>

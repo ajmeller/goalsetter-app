@@ -41,31 +41,6 @@ export class AuthService {
     });
   }
 
-  login(email: string, password: string) {
-    return this.afAuth
-      .signInWithEmailAndPassword(email, password)
-      .then((result: any) => {
-        this.ngZone.run(() => {
-          this.router.navigate(['today']);
-        });
-        this.setUserData(result.user);
-      })
-      .catch((error) => {
-        window.alert(error.message);
-      });
-  }
-
-  register(email: string, password: string) {
-    return this.afAuth
-      .createUserWithEmailAndPassword(email, password)
-      .then((result: any) => {
-        this.setUserData(result.user);
-      })
-      .catch((error) => {
-        window.alert(error.message);
-      });
-  }
-
   get isLoggedIn(): boolean {
     const user = this.parseUserData();
     return user !== null;

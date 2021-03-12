@@ -7,34 +7,39 @@ import { DailyService } from 'src/app/services/daily.service';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css']
+  styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent implements OnInit {
-  constructor(private dailyService: DailyService, 
-    private authService: AuthService,
-    ) {}
+  constructor(
+    private dailyService: DailyService,
+    private authService: AuthService
+  ) {}
 
   isShow: boolean = true;
-  user: User = {uid: '', displayName: ''};
+  user: User = { uid: '', displayName: '' };
   dates: string[] = [];
-  
+
   toggleDays() {
     this.isShow = !this.isShow;
   }
 
   getDays() {
-    this.dailyService.getAllEntries(this.user.uid).subscribe((data: any) => {
-      data.forEach((dateEntry: any) => {
-        const datePretty = moment(dateEntry.date).format('MM-DD-YYYY');
-        this.dates.push(datePretty);
-      })
-    })
+    this.dailyService
+      .getAllEntries('A61s04wNOBPbgrQUEvPaZGLIlvy2')
+      .subscribe((data: any) => {
+        data.forEach((dateEntry: any) => {
+          const datePretty = moment(dateEntry.date).format('MM-DD-YYYY');
+          this.dates.push(datePretty);
+        });
+      });
   }
 
   goToDate(date: string) {
-    this.dailyService.getDailyEntry(this.user.uid, date).subscribe((data) => {
-      console.log(data)
-    })
+    this.dailyService
+      .getDailyEntry('A61s04wNOBPbgrQUEvPaZGLIlvy2', date)
+      .subscribe((data) => {
+        console.log(data);
+      });
   }
 
   ngOnInit(): void {

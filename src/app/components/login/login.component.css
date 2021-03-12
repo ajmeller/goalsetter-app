@@ -1,46 +1,42 @@
 .login {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   flex-direction: column;
-  width: 100vw;
+  height: 100vh;
+  margin: 20px;
 }
 
-.userPass {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  padding: 10px;
-  justify-content: space-between;
-  height: 100px;
-  width: 75%;
+h1,
+h2 {
+  margin: 0px;
+  margin-bottom: 10px;
 }
 
-input {
-  border: none;
-  border-bottom: 2px solid;
-  background-color: skyblue;
-  text-align: center;
-  width: 300px;
-}
-
-.submit {
+button.google {
+  font-size: 16px;
+  padding: 15px;
   border-radius: 5px;
+  background-color: whitesmoke;
+  border: none;
+  width: 220px;
+  position: relative;
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  font-weight: 500;
+  outline: none;
 }
 
-.google {
-  font-size: 14px;
-  padding-left: 16px;
-  text-transform: none;
-  vertical-align: middle;
+.google-logo {
+  height: 20px;
+  padding-right: 10px;
 }
 
 /* tablet screen size */
 /* @media only screen and (min-width: 768px){
-    input{
-        width: 678px;
-    }
+
 } */
 
 /* desktop screen size */

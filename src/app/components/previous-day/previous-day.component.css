@@ -6,6 +6,7 @@
   background-color: gray;
   opacity: 0.2;
   margin-top: 0;
+  height: 125px;
 }
 .hide {
   display: none;

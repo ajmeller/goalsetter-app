@@ -1,11 +1,9 @@
 <div class="today-container">
-  <div class="previous-day-preview"><app-previous-day></app-previous-day></div>
   <div class="welcomeScreen">
     <h1 class="welcome">Good Evening, {{ user.displayName }}!</h1>
     <h2 class="date">{{ today }}</h2>
   </div>
   <div class="inputs">
-    <div class="checkmark"></div>
     <div class="mood" (click)="selectMood($event)">
       <span><mat-icon class="happy" id="happy">mood</mat-icon></span>
       <span
@@ -24,9 +22,10 @@
         name="comment"
         id="comment"
         placeholder="Enter a comment for today..."
+        [(ngModel)]="comment"
       ></textarea>
     </div>
-    <button class="save">
+    <button class="save" (click)="saveDailyEntry()">
       <span><mat-icon class="check">done_outline</mat-icon></span>
     </button>
   </div>

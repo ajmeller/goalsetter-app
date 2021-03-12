@@ -22,6 +22,7 @@ export class TodayComponent implements OnInit {
   user: User = { uid: '', displayName: '' };
   today: string = moment(new Date()).format('ddd. MMMM Do, YYYY');
   mood: string = '';
+  comment: string = '';
 
   getQuote() {
     this.quotesService.getQuote().subscribe((data) => {
@@ -44,10 +45,12 @@ export class TodayComponent implements OnInit {
     this.dailyService.updateDailyEntry(
       date,
       true,
-      comment,
+      this.comment,
       this.user.uid,
       this.mood
-    );
+    ).subscribe((hi: any) => {
+      console.log(hi)
+    })
   }
 
   ngOnInit(): void {

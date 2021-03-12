@@ -16,12 +16,7 @@ export class PreviousDayComponent implements OnInit {
     private dailyService: DailyService
   ) {}
 
-  isShow = true;
   user: User = { uid: '', displayName: '' };
-
-  toggleDays() {
-    this.isShow = !this.isShow;
-  }
 
   get dailyEntry(): DailyEntry {
     return this.dailyService.dailyEntry;
@@ -45,8 +40,6 @@ export class PreviousDayComponent implements OnInit {
             datePretty: moment(daily.date).format('ddd. MMMM Do, YYYY'),
             mood: daily.mood,
           };
-
-          console.log(this.dailyEntry);
         })
     );
   }

@@ -1,0 +1,21 @@
+.previous-day-container {
+    display: flex;
+    align-items: center;
+    width: 100vw;
+    height: 100px;
+    background-color: gray;
+    opacity: 0.2;
+    margin-top: 0;
+    height: 125px;
+  }
+  .hide {
+    display: none;
+    pointer-events: none;
+  }
+  
+  .prevDay {
+    width: 100vw;
+    display: flex;
+    align-items: left;
+    flex-direction: column;
+  }

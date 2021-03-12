@@ -1,4 +1,4 @@
-.previous-day-container {
+.header-container {
     display: flex;
     align-items: center;
     width: 100vw;
@@ -8,14 +8,25 @@
     margin-top: 0;
     height: 125px;
   }
+
   .hide {
     display: none;
     pointer-events: none;
   }
   
-  .prevDay {
+  .header {
     width: 100vw;
     display: flex;
     align-items: left;
     flex-direction: column;
   }
+
+  .day-buttons{
+    display: flex;
+    align-items: left;
+  }
+
+  /* will add this feature on the desktop version */
+/* .previous-day-container:hover {
+  opacity: 1;
+} */

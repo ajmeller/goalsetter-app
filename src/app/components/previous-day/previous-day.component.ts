@@ -22,26 +22,19 @@ export class PreviousDayComponent implements OnInit {
     return this.dailyService.dailyEntry;
   }
 
-  /*   set dailyEntry(entry: DailyEntry) {
-    this.entry = entry;
-  } */
-
   getDailyEntry() {
-    return (
-      this.dailyService
-        //.getDailyEntry(this.user.uid, '2021-03-10')
-        .getDailyEntry('A61s04wNOBPbgrQUEvPaZGLIlvy2', '2021-03-10')
-        .subscribe((data: any) => {
-          const daily = data[0];
-          this.dailyService.dailyEntry = {
-            date: daily.date,
-            completed: daily.completed,
-            comment: daily.comment,
-            datePretty: moment(daily.date).format('ddd. MMMM Do, YYYY'),
-            mood: daily.mood,
-          };
-        })
-    );
+    this.dailyService
+      .getDailyEntry(this.user.uid, '2021-03-10')
+      .subscribe((data: any) => {
+        const daily = data[0];
+        this.dailyService.dailyEntry = {
+          date: daily.date,
+          completed: daily.completed,
+          comment: daily.comment,
+          datePretty: moment(daily.date).format('ddd. MMMM Do, YYYY'),
+          mood: daily.mood,
+        };
+      });
   }
 
   ngOnInit(): void {

@@ -12,17 +12,6 @@ import {
   providedIn: 'root',
 })
 export class AuthService {
-  user: User = { uid: '', displayName: '' };
-
-  userData: any;
-
-  parseUserData() {
-    const userStorage = localStorage.getItem('user');
-    if (userStorage) {
-      return JSON.parse(userStorage);
-    }
-  }
-
   constructor(
     public afs: AngularFirestore,
     public afAuth: AngularFireAuth,
@@ -41,9 +30,28 @@ export class AuthService {
     });
   }
 
+  userData: any;
+
   get isLoggedIn(): boolean {
     const user = this.parseUserData();
     return user !== null;
+  }
+
+  get user(): User {
+    const userData = this.parseUserData();
+    if (userData) {
+      const user = { uid: userData.uid, displayName: userData.displayName };
+      return user;
+    } else {
+      return { uid: '', displayName: '' };
+    }
+  }
+
+  parseUserData() {
+    const userStorage = localStorage.getItem('user');
+    if (userStorage) {
+      return JSON.parse(userStorage);
+    }
   }
 
   googleAuth() {
@@ -64,19 +72,17 @@ export class AuthService {
       });
   }
 
-  setUserData(user: User) {
+  setUserData(userData: any) {
     const userRef: AngularFirestoreDocument<any> = this.afs.doc(
-      `users/${user.uid}`
+      `users/${userData.uid}`
     );
 
-    this.user = {
-      uid: user.uid,
-      displayName: user.displayName,
+    const user: User = {
+      uid: userData.uid,
+      displayName: userData.displayName,
     };
 
-    return userRef.set(user, {
-      merge: true,
-    });
+    return userRef.set(user);
   }
 
   signOut() {

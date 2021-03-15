@@ -24,27 +24,26 @@ export class HeaderComponent implements OnInit {
   }
 
   getDays() {
-    this.dailyService
-      .getAllEntries('A61s04wNOBPbgrQUEvPaZGLIlvy2')
-      .subscribe((data: any) => {
-        data.forEach((dateEntry: any) => {
-          const datePretty = moment(dateEntry.date).format('MM-DD-YYYY');
-          this.dates.push(datePretty);
-        });
+    this.dailyService.getAllEntries(this.user.uid).subscribe((data: any) => {
+      data.forEach((dateEntry: any) => {
+        const datePretty = moment(dateEntry.date).format('MM-DD-YYYY');
+        this.dates.push(datePretty);
       });
+    });
   }
 
   goToDate(date: string) {
-    this.dailyService
-      .getDailyEntry('A61s04wNOBPbgrQUEvPaZGLIlvy2', date)
-      .subscribe((data) => {
-        console.log(data);
-      });
+    this.dailyService.getDailyEntry(this.user.uid, date).subscribe((data) => {
+      console.log(data);
+    });
+  }
+
+  signOut() {
+    return this.authService.signOut();
   }
 
   ngOnInit(): void {
     this.user = this.authService.user;
     this.getDays();
-    console.log(this.dates);
   }
 }

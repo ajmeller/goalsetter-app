@@ -16,7 +16,6 @@ daily.get("/:id/:date", (req, res) => {
 daily.get("/:id", (req, res) => {
   pool
     .query(
-      // change from SELECT DISTINCT to SELECT after removing duplicates
       `SELECT DISTINCT date FROM daily_entries WHERE user_id = '${req.params.id}' ORDER BY date DESC`
     )
     .then((result) => {
@@ -34,7 +33,7 @@ daily.post("/update", (req, res) => {
 
   pool
     .query(
-      `INSERT INTO daily_entries (date, completed, comment, user_id, mood) VALUES ('${date}', ${completed}, '${comment}', '${userId}, ${mood}')`
+      `INSERT INTO daily_entries (date, completed, comment, user_id, mood) VALUES ('${date}', ${completed}, '${comment}', '${userId}', '${mood}')`
     )
     .then((result) => {
       res.sendStatus(201);

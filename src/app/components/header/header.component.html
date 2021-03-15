@@ -1,8 +1,13 @@
 <div class="header">
-    <mat-icon class="mobile-menu" (click)="toggleDays()">menu</mat-icon>
-    <div class="header-container" *ngIf="!isShow">
-      <div class="day-buttons">
-        <div *ngFor="let date of dates" (click)="goToDate(date)"><button>{{date}}</button></div>
+  <mat-icon class="mobile-menu" (click)="toggleDays()">menu</mat-icon>
+  <div class="header-container" *ngIf="!isShow">
+    <div class="day-buttons">
+      <div *ngFor="let date of dates" (click)="goToDate(date)">
+        <button>{{ date }}</button>
       </div>
     </div>
+  </div>
+  <div class="user-actions">
+    <button class="sign-out" (click)="signOut()">Sign out</button>
+  </div>
 </div>

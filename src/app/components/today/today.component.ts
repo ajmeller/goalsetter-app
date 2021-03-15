@@ -19,10 +19,13 @@ export class TodayComponent implements OnInit {
   ) {}
 
   quote: Quote = { quote: '', author: '' };
-  user: User = { uid: '', displayName: '' };
   today: string = moment(new Date()).format('ddd. MMMM Do, YYYY');
   mood: string = '';
   comment: string = '';
+
+  get user(): User {
+    return this.authService.user;
+  }
 
   getQuote() {
     this.quotesService.getQuote().subscribe((data) => {
@@ -31,7 +34,6 @@ export class TodayComponent implements OnInit {
         quote: quoteData.quote,
         author: quoteData.author,
       };
-
       this.quote = quote;
     });
   }
@@ -42,19 +44,14 @@ export class TodayComponent implements OnInit {
 
   saveDailyEntry() {
     const date = moment(new Date()).format('YYYY-MM-DD');
-    this.dailyService.updateDailyEntry(
-      date,
-      true,
-      this.comment,
-      this.user.uid,
-      this.mood
-    ).subscribe((hi: any) => {
-      console.log(hi)
-    })
+    this.dailyService
+      .updateDailyEntry(date, true, this.comment, this.user.uid, this.mood)
+      .subscribe(() => {
+        return null;
+      });
   }
 
   ngOnInit(): void {
-    this.user = this.authService.user;
     this.getQuote();
   }
 }

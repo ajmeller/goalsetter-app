@@ -1,20 +1,26 @@
+<app-header></app-header>
 <div class="previous-day-container">
-  <h2 class="date">{{ dailyEntry.datePretty }}</h2>
-  <div class="completed">{{dailyEntry.completed}}</div>
-  <div class="mood">
-  <span class="happy" *ngIf="dailyEntry.mood === 'happy'"><mat-icon class="happy" id="happy">mood</mat-icon></span>
-  <span class="medium" *ngIf="dailyEntry.mood === 'medium'"
-    ><mat-icon class="medium" id="medium"
-      >sentiment_dissatisfied</mat-icon
-    ></span
-  >
-  <span class="sad" *ngIf="dailyEntry.mood === 'sad'"
-    ><mat-icon class="sad" id="sad"
-      >sentiment_very_dissatisfied</mat-icon
-    ></span
-  >
+  <h2 class="date">{{ datePretty }}</h2>
+  <div class="previous-day" *ngIf="dailyEntry.completed">
+    <div class="completed">{{ dailyEntry.completed }}</div>
+    <div class="mood">
+      <span class="happy" *ngIf="dailyEntry.mood === 'happy'"
+        ><mat-icon class="happy" id="happy">mood</mat-icon></span
+      >
+      <span class="medium" *ngIf="dailyEntry.mood === 'medium'"
+        ><mat-icon class="medium" id="medium"
+          >sentiment_dissatisfied</mat-icon
+        ></span
+      >
+      <span class="sad" *ngIf="dailyEntry.mood === 'sad'"
+        ><mat-icon class="sad" id="sad"
+          >sentiment_very_dissatisfied</mat-icon
+        ></span
+      >
+    </div>
+    <div class="comment">{{ dailyEntry.comment }}</div>
   </div>
-  <div class="comment">{{dailyEntry.comment}}</div>
+  <div *ngIf="!dailyEntry.completed" class="no-data">
+    No data for this date.
+  </div>
 </div>
-
-

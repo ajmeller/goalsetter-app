@@ -1,7 +1,8 @@
+<app-header></app-header>
 <div class="today-container">
   <div class="welcome">
     <h1 class="welcome">Good Evening, {{ user.displayName }}!</h1>
-    <h2 class="date">{{ today }}</h2>
+    <h2 class="date">{{ welcomeDate }}</h2>
   </div>
   <div class="inputs">
     <div class="mood" (click)="selectMood($event)">

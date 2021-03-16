@@ -89,7 +89,7 @@ export class TodayComponent implements OnInit {
           this.mood,
           this.goal.goalId
         )
-        .subscribe(() => {});
+        .subscribe((data: any) => {});
       this.router.navigate([`/daily/${this.today}`]);
     }
   }

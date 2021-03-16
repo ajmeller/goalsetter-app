@@ -1,4 +1,5 @@
 const express = require("express");
+const moment = require("moment");
 const daily = express.Router();
 const pool = require("../pg-connection-pool");
 
@@ -35,13 +36,22 @@ daily.get("/stats/:id", (req, res) => {
       ORDER BY de.date ASC`
     )
     .then((result) => {
-      const daysTotal = result.length;
+      const data = result.rows;
+      const completedTotal = data.length;
+      const firstDate = data[0].date;
+      const lastDate = data[data.length - 1].date;
+      const daysTotal = moment(lastDate).diff(moment(firstDate), "days");
+      const moodCount = data
+        .map((o) => o.mood)
+        .reduce((total, value) => {
+          total[value] = (total[value] || 0) + 1;
+          return total;
+        }, {});
       const stats = {
-        firstEntry: new Date(),
-        daysTotal: daysTotal,
-        percentageComplete: 0,
-        longestStreak: 0,
-        averageMood: "",
+        firstEntry: firstDate,
+        daysTotal: completedTotal,
+        percentageComplete: completedTotal / daysTotal,
+        moodCount: moodCount,
       };
       res.send(stats);
     })

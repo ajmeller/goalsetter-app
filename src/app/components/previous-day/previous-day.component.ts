@@ -19,7 +19,7 @@ export class PreviousDayComponent implements OnInit {
 
   datePretty: string = '';
 
-  @Input() dailyEntry: DailyEntry = {
+  /*   @Input() dailyEntry: DailyEntry = {
     dailyId: 0,
     date: new Date(),
     completed: false,
@@ -29,11 +29,11 @@ export class PreviousDayComponent implements OnInit {
       goalId: 0,
       goalDescription: '',
     },
-  };
+  }; */
 
-  /*   get dailyEntry(): DailyEntry {
+  get dailyEntry(): DailyEntry {
     return this.dailyService.dailyEntry;
-  } */
+  }
 
   getDailyEntry() {
     this.route.params.subscribe((params) => {

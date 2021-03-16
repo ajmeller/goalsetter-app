@@ -16,7 +16,7 @@ daily.get("/:id/:date", (req, res) => {
 daily.get("/:id", (req, res) => {
   pool
     .query(
-      `SELECT DISTINCT date FROM daily_entries WHERE user_id = '${req.params.id}' ORDER BY date DESC`
+      `SELECT DISTINCT date FROM daily_entries WHERE user_id = '${req.params.id}' ORDER BY date ASC`
     )
     .then((result) => {
       res.send(result.rows);

@@ -14,7 +14,6 @@ export class DailyService {
     date: new Date(),
     completed: false,
     comment: '',
-    datePretty: '',
     mood: '',
   };
 
@@ -26,7 +25,7 @@ export class DailyService {
     return this.http.get(`${this.apiUrl}/${userId}`);
   }
 
-  updateDailyEntry(
+  saveEntryForToday(
     date: string,
     completed: boolean,
     comment: string,

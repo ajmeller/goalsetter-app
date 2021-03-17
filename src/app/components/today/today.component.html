@@ -1,6 +1,6 @@
 <div class="today-container">
   <div class="welcome">
-    <h2 class="welcome">Good Evening, {{ user.displayName }}!</h2>
+    <h2 class="welcome">Good {{ timeOfDay }}, {{ user.displayName }}</h2>
     <div class="goal">
       <div class="goal-desc" *ngIf="!editGoalMode">
         {{ goal.goalDescription }}
@@ -9,10 +9,14 @@
         <input class="new-goal" type="text" [(ngModel)]="newGoal" /><button
           (click)="saveNewGoal()"
         >
-          OK
+          <mat-icon>done</mat-icon>
         </button>
       </div>
-      <mat-icon class="edit-goal" (click)="toggleEditGoalMode()">edit</mat-icon>
+      <button class="edit-cancel">
+        <mat-icon class="edit-cancel" (click)="toggleEditGoalMode()">{{
+          editGoalMode ? "clear" : "edit"
+        }}</mat-icon>
+      </button>
     </div>
 
     <div class="date">{{ welcomeDate }}</div>

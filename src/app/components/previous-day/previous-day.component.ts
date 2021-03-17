@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import * as moment from 'moment';
 import { DailyEntry } from 'src/app/models/daily-entry.interface';
@@ -38,8 +38,11 @@ export class PreviousDayComponent implements OnInit {
   getDailyEntry() {
     this.route.params.subscribe((params) => {
       if (params && Object.keys(params).length > 0) {
+        const dateParam = params['date'];
+        this.datePretty = moment(dateParam).format('ddd. MMMM Do, YYYY');
+        this.dailyService.getNewDate.emit(dateParam);
         this.dailyService
-          .getDailyEntry(this.authService.user.uid, params['date'])
+          .getDailyEntry(this.authService.user.uid, dateParam)
           .subscribe((data: any) => {
             if (data.length > 0) {
               const daily = data[0];
@@ -52,6 +55,5 @@ export class PreviousDayComponent implements OnInit {
 
   ngOnInit(): void {
     this.getDailyEntry();
-    this.datePretty = moment(this.dailyEntry.date).format('ddd. MMMM Do, YYYY');
   }
 }

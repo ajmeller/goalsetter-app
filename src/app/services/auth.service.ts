@@ -1,4 +1,4 @@
-import { Injectable, NgZone } from '@angular/core';
+import { Injectable, NgZone, Output } from '@angular/core';
 import firebase from 'firebase/app';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { User } from '../models/user.interface';
@@ -7,6 +7,7 @@ import {
   AngularFirestore,
   AngularFirestoreDocument,
 } from '@angular/fire/firestore';
+import { EventEmitter } from '@angular/core';
 
 @Injectable({
   providedIn: 'root',
@@ -20,21 +21,21 @@ export class AuthService {
   ) {
     this.afAuth.authState.subscribe((user) => {
       if (user) {
-        this.userData = user;
-        localStorage.setItem('user', JSON.stringify(this.userData));
+        sessionStorage.setItem('user', JSON.stringify(user));
         this.parseUserData();
       } else {
-        localStorage.setItem('user', '');
+        sessionStorage.setItem('user', '');
         this.parseUserData();
       }
+      this.getIsLoggedIn.emit(this.isLoggedIn);
     });
   }
 
-  userData: any;
+  @Output() getIsLoggedIn: EventEmitter<boolean> = new EventEmitter();
 
   get isLoggedIn(): boolean {
     const user = this.parseUserData();
-    return user !== null;
+    return user !== undefined;
   }
 
   get user(): User {
@@ -48,7 +49,7 @@ export class AuthService {
   }
 
   parseUserData() {
-    const userStorage = localStorage.getItem('user');
+    const userStorage = sessionStorage.getItem('user');
     if (userStorage) {
       return JSON.parse(userStorage);
     }
@@ -87,7 +88,8 @@ export class AuthService {
 
   signOut() {
     return this.afAuth.signOut().then(() => {
-      localStorage.removeItem('user');
+      sessionStorage.removeItem('user');
+      this.getIsLoggedIn.emit(this.isLoggedIn);
       this.router.navigate(['login']);
     });
   }

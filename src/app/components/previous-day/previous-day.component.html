@@ -1,7 +1,7 @@
-<app-header></app-header>
 <div class="previous-day-container">
   <h2 class="date">{{ datePretty }}</h2>
   <div class="previous-day" *ngIf="dailyEntry.completed">
+    <div class="goal">{{ dailyEntry.goal.goalDescription }}</div>
     <div class="completed">{{ dailyEntry.completed }}</div>
     <div class="mood">
       <span class="happy" *ngIf="dailyEntry.mood === 'happy'"

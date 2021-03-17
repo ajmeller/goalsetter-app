@@ -22,6 +22,7 @@ export class HeaderComponent implements OnInit {
   user: User = { uid: '', displayName: '' };
   dates: string[] = [];
   datesVisible: string[] = [];
+  userLoggedIn: boolean = false;
 
   toggleDays() {
     this.isShow = !this.isShow;
@@ -30,7 +31,7 @@ export class HeaderComponent implements OnInit {
   getDays() {
     this.dates = [];
 
-    this.dailyService.getAllEntries(this.user.uid).subscribe((data: any) => {
+    this.dailyService.getEntryDates(this.user.uid).subscribe((data: any) => {
       data.forEach((dateEntry: any) => {
         const datePretty = moment(dateEntry.date).format('MM-DD-YYYY');
         this.dates.push(datePretty);
@@ -59,7 +60,7 @@ export class HeaderComponent implements OnInit {
 
   goToDate(dateSelected: string) {
     const date = moment(dateSelected).format('YYYY-MM-DD');
-    this.router.navigate([date]);
+    this.router.navigate([`/daily/${date}`]);
     this.getDays();
   }
 
@@ -69,6 +70,8 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     this.user = this.authService.user;
+    this.userLoggedIn = this.authService.isLoggedIn;
     this.getDays();
+    //BUG: doesnt update when router outlet view changes
   }
 }

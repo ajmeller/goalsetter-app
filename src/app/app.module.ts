@@ -8,16 +8,20 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 
 import { environment } from '../environments/environment';
+import { CommonModule } from '@angular/common';
+
 import { AppComponent } from './app.component';
 import { TodayComponent } from './components/today/today.component';
 import { LoginComponent } from './components/login/login.component';
 import { PreviousDayComponent } from './components/previous-day/previous-day.component';
 import { HeaderComponent } from './components/header/header.component';
+import { StatsComponent } from './components/stats/stats.component';
+import { AllDaysComponent } from './components/all-days/all-days.component';
+
 import { AuthService } from './services/auth.service';
 import { QuotesService } from './services/quotes.service';
 import { DailyService } from './services/daily.service';
 import { FormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -25,7 +29,9 @@ import { CommonModule } from '@angular/common';
     TodayComponent,
     LoginComponent,
     PreviousDayComponent,
-    HeaderComponent
+    HeaderComponent,
+    StatsComponent,
+    AllDaysComponent,
   ],
   imports: [
     BrowserModule,
@@ -36,7 +42,7 @@ import { CommonModule } from '@angular/common';
     BrowserAnimationsModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
-    CommonModule
+    CommonModule,
   ],
   providers: [AuthService, QuotesService, DailyService],
   bootstrap: [AppComponent],

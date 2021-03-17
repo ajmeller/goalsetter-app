@@ -38,7 +38,9 @@ export class TodayComponent implements OnInit {
       if (isLoggedIn) {
         this.getTimeOfDay();
         this.setQuote();
-        this.getGoal();
+        if (this.newGoal == '') {
+          this.getGoal();
+        }
         this.getEntryForToday();
       }
     });
@@ -123,11 +125,25 @@ export class TodayComponent implements OnInit {
   getGoal() {
     this.goalService.getGoals(this.user.uid).subscribe((data: any) => {
       const currentGoal = data.find((o: any) => o.is_current);
-      this.goalService.goal = {
-        goalId: currentGoal.goal_id,
-        goalDescription: currentGoal.goal_description,
-      };
-      this.newGoal = this.goal.goalDescription;
+      if (currentGoal) {
+        this.goalService.goal = {
+          goalId: currentGoal.goal_id,
+          goalDescription: currentGoal.goal_description,
+        };
+
+        this.newGoal = this.goal.goalDescription;
+      } else {
+        const firstGoal = window.prompt('Please Enter Goal');
+        if (firstGoal) {
+          this.goalService
+            .saveNewGoal(firstGoal, this.user.uid)
+            .subscribe((data: any) => {
+              return null;
+            });
+          this.newGoal = firstGoal;
+          this.goalService.goal.goalDescription = firstGoal;
+        }
+      }
     });
   }
 
@@ -149,9 +165,9 @@ export class TodayComponent implements OnInit {
   ngOnInit(): void {
     this.getTimeOfDay();
     this.setQuote();
-    this.getGoal();
+    if (this.newGoal == '') {
+      this.getGoal();
+    }
     this.getEntryForToday();
-
-    //BUG: runs before login complete
   }
 }

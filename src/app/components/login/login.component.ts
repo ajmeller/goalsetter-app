@@ -7,14 +7,13 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
-  showLoginButton = false;
-  showLogoutButton = false;
-
   constructor(private authService: AuthService) {}
-
-  ngOnInit(): void {}
 
   loginWithGoogle() {
     this.authService.googleAuth();
+  }
+
+  ngOnInit(): void {
+    this.authService.signOut();
   }
 }

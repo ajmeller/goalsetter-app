@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable, Output } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { DailyEntry } from '../models/daily-entry.interface';
@@ -20,6 +20,8 @@ export class DailyService {
     goal: { goalId: 0, goalDescription: '' },
   };
   dailyEntries: DailyEntry[] = [];
+
+  @Output() getNewDate: EventEmitter<any> = new EventEmitter();
 
   getDailyEntry(userId: string, date: string): Observable<any> {
     return this.http.get(`${this.apiUrl}/daily/${userId}/${date}`);

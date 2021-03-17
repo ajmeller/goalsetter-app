@@ -16,14 +16,7 @@ import { Goal } from 'src/app/models/goal.interface';
   styleUrls: ['./today.component.css'],
 })
 export class TodayComponent implements OnInit {
-  constructor(
-    private authService: AuthService,
-    private dailyService: DailyService,
-    private quotesService: QuotesService,
-    private goalService: GoalService,
-    private router: Router
-  ) {}
-
+  userLoggedIn: boolean = false;
   quote: Quote = { quote: '', author: '' };
   welcomeDate: string = moment(new Date()).format('ddd. MMMM Do, YYYY');
   today: string = moment(new Date()).format('YYYY-MM-DD');
@@ -31,6 +24,25 @@ export class TodayComponent implements OnInit {
   comment: string = '';
   editGoalMode: boolean = false;
   newGoal: string = '';
+  timeOfDay: string = '';
+
+  constructor(
+    private authService: AuthService,
+    private dailyService: DailyService,
+    private quotesService: QuotesService,
+    private goalService: GoalService,
+    private router: Router
+  ) {
+    authService.getIsLoggedIn.subscribe((isLoggedIn: boolean) => {
+      this.userLoggedIn = isLoggedIn;
+      if (isLoggedIn) {
+        this.getTimeOfDay();
+        this.setQuote();
+        this.getGoal();
+        this.getEntryForToday();
+      }
+    });
+  }
 
   get user(): User {
     return this.authService.user;
@@ -42,6 +54,18 @@ export class TodayComponent implements OnInit {
 
   get goal(): Goal {
     return this.goalService.goal;
+  }
+
+  getTimeOfDay() {
+    const now = new Date();
+    const currentHour = now.getHours();
+    if (currentHour < 12) {
+      this.timeOfDay = 'morning';
+    } else if (currentHour >= 12 || currentHour < 17) {
+      this.timeOfDay = 'afternoon';
+    } else if (currentHour >= 17) {
+      this.timeOfDay = 'evening';
+    }
   }
 
   setQuote() {
@@ -89,7 +113,9 @@ export class TodayComponent implements OnInit {
           this.mood,
           this.goal.goalId
         )
-        .subscribe((data: any) => {});
+        .subscribe((data: any) => {
+          return data;
+        });
       this.router.navigate([`/daily/${this.today}`]);
     }
   }
@@ -101,6 +127,7 @@ export class TodayComponent implements OnInit {
         goalId: currentGoal.goal_id,
         goalDescription: currentGoal.goal_description,
       };
+      this.newGoal = this.goal.goalDescription;
     });
   }
 
@@ -120,9 +147,11 @@ export class TodayComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.getTimeOfDay();
     this.setQuote();
     this.getGoal();
     this.getEntryForToday();
+
     //BUG: runs before login complete
   }
 }

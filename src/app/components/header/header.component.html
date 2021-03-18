@@ -1,6 +1,8 @@
-<h1 [routerLink]="['/today']">Every Day For A Year</h1>
 <div class="header" *ngIf="userLoggedIn">
-  <mat-icon class="mobile-menu" (click)="toggleDays()">menu</mat-icon>
+  <h1 class="app-title"><a [routerLink]="['/today']">Momentum</a></h1>
+  <button class="mobile-menu" (click)="toggleDays()">
+    <mat-icon>menu</mat-icon>
+  </button>
   <div class="header-container" *ngIf="!isShow">
     <div class="day-buttons">
       <div *ngFor="let date of dates" (click)="goToDate(date)">

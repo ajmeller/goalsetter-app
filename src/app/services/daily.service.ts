@@ -23,6 +23,7 @@ export class DailyService {
   dailyEntries: DailyEntry[] = [];
 
   @Output() getNewDate: EventEmitter<any> = new EventEmitter();
+  @Output() newEntrySaved: EventEmitter<boolean> = new EventEmitter();
 
   getDailyEntry(userId: string, date: string): Observable<any> {
     return this.http.get(`${this.apiUrl}/daily/${userId}/${date}`);

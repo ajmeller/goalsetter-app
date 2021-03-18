@@ -4,11 +4,11 @@ import { AuthService } from 'src/app/services/auth.service';
 import { DailyService } from 'src/app/services/daily.service';
 import { QuotesService } from 'src/app/services/quotes.service';
 import { User } from 'src/app/models/user.interface';
-import * as moment from 'moment';
 import { DailyEntry } from 'src/app/models/daily-entry.interface';
 import { Router } from '@angular/router';
 import { GoalService } from 'src/app/services/goal.service';
 import { Goal } from 'src/app/models/goal.interface';
+import { format, add } from 'date-fns';
 
 @Component({
   selector: 'app-today',
@@ -18,8 +18,8 @@ import { Goal } from 'src/app/models/goal.interface';
 export class TodayComponent implements OnInit {
   userLoggedIn: boolean = false;
   quote: Quote = { quote: '', author: '' };
-  welcomeDate: string = moment(new Date()).format('ddd. MMMM Do, YYYY');
-  today: string = moment(new Date()).format('YYYY-MM-DD');
+  welcomeDate: string = format(new Date(), 'EEE. MMMM do, yyyy');
+  today: string = format(new Date(), 'yyyy-MM-dd');
   mood: string = '';
   comment: string = '';
   editGoalMode: boolean = false;
@@ -35,13 +35,14 @@ export class TodayComponent implements OnInit {
   ) {
     authService.getIsLoggedIn.subscribe((isLoggedIn: boolean) => {
       this.userLoggedIn = isLoggedIn;
-      if (isLoggedIn) {
+      if (this.userLoggedIn) {
         this.getTimeOfDay();
         this.setQuote();
+        this.getEntryForToday();
+
         if (this.newGoal == '') {
           this.getGoal();
         }
-        this.getEntryForToday();
       }
     });
   }
@@ -63,7 +64,7 @@ export class TodayComponent implements OnInit {
     const currentHour = now.getHours();
     if (currentHour < 12) {
       this.timeOfDay = 'morning';
-    } else if (currentHour >= 12 || currentHour < 17) {
+    } else if (currentHour >= 12 && currentHour < 17) {
       this.timeOfDay = 'afternoon';
     } else if (currentHour >= 17) {
       this.timeOfDay = 'evening';
@@ -94,9 +95,11 @@ export class TodayComponent implements OnInit {
           this.dailyService.setDailyEntry(daily);
         }
 
+        const date = add(new Date(this.dailyEntry.date), { days: 1 });
+
         if (
           this.dailyEntry &&
-          moment(this.dailyEntry.date).format('YYYY-MM-DD') === this.today &&
+          format(date, 'yyyy-MM-dd') === this.today &&
           this.dailyEntry.completed
         ) {
           this.router.navigate([`/daily/${this.today}`]);
@@ -115,8 +118,11 @@ export class TodayComponent implements OnInit {
           this.mood,
           this.goal.goalId
         )
+        .subscribe((data: any) => {});
+      this.dailyService
+        .getDailyEntry(this.user.uid, this.today)
         .subscribe((data: any) => {
-          return data;
+          this.dailyService.newEntrySaved.emit(true);
         });
       this.router.navigate([`/daily/${this.today}`]);
     }
@@ -163,11 +169,14 @@ export class TodayComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getTimeOfDay();
-    this.setQuote();
-    if (this.newGoal == '') {
-      this.getGoal();
+    if (this.userLoggedIn) {
+      this.getTimeOfDay();
+      this.setQuote();
+      this.getEntryForToday();
+
+      if (this.newGoal == '') {
+        this.getGoal();
+      }
     }
-    this.getEntryForToday();
   }
 }

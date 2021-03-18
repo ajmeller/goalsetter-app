@@ -2,8 +2,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 100vh;
-  justify-content: space-around;
+  height: 90vh;
+  justify-content: space-evenly;
   margin: 0px 20px;
 }
 
@@ -11,6 +11,44 @@ h1,
 h2 {
   margin: 0px;
   margin-bottom: 10px;
+}
+
+h2 {
+  font-size: 22pt;
+}
+
+.top {
+  text-align: center;
+}
+
+.goal {
+  display: flex;
+  justify-content: center;
+}
+
+.goal-desc {
+  font-size: 18pt;
+  margin-bottom: 10px;
+}
+
+input.new-goal {
+  background-color: rgba(255, 255, 255, 0);
+  border: none;
+  border-bottom: 1px solid black;
+}
+
+.goal button {
+  background-color: rgba(255, 255, 255, 0);
+  border: none;
+  margin-left: 5px;
+}
+
+.goal button mat-icon:hover {
+  color: rgba(0, 0, 0, 0.65);
+}
+
+.date {
+  font-size: 14pt;
 }
 
 .inputs {
@@ -76,4 +114,8 @@ textarea {
 
 .quote-credit a:visited {
   color: rgb(79, 79, 79);
+}
+
+.quote-container {
+  display: none;
 }

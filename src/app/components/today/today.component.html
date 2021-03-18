@@ -1,5 +1,5 @@
 <div class="today-container">
-  <div class="welcome">
+  <div class="top">
     <h2 class="welcome">Good {{ timeOfDay }}, {{ user.displayName }}</h2>
     <div class="goal">
       <div class="goal-desc" *ngIf="!editGoalMode">
@@ -7,60 +7,65 @@
       </div>
       <div class="edit-goal-mode" *ngIf="editGoalMode">
         <input class="new-goal" type="text" [(ngModel)]="newGoal" /><button
+          class="save-goal"
           (click)="saveNewGoal()"
         >
           <mat-icon>done</mat-icon>
         </button>
       </div>
       <button class="edit-cancel">
-        <mat-icon class="edit-cancel" (click)="toggleEditGoalMode()">{{
+        <mat-icon (click)="toggleEditGoalMode()">{{
           editGoalMode ? "clear" : "edit"
         }}</mat-icon>
       </button>
     </div>
-
     <div class="date">{{ welcomeDate }}</div>
   </div>
-  <div class="inputs">
-    <div class="mood" (click)="selectMood($event)">
-      <span><mat-icon class="happy" id="happy">mood</mat-icon></span>
-      <span
-        ><mat-icon class="medium" id="medium"
-          >sentiment_dissatisfied</mat-icon
-        ></span
-      >
-      <span
-        ><mat-icon class="sad" id="sad"
-          >sentiment_very_dissatisfied</mat-icon
-        ></span
-      >
+
+  <div class="middle">
+    <div class="inputs">
+      <div class="mood" (click)="selectMood($event)">
+        <span><mat-icon class="happy" id="happy">mood</mat-icon></span>
+        <span
+          ><mat-icon class="medium" id="medium"
+            >sentiment_dissatisfied</mat-icon
+          ></span
+        >
+        <span
+          ><mat-icon class="sad" id="sad"
+            >sentiment_very_dissatisfied</mat-icon
+          ></span
+        >
+      </div>
+      <textarea
+        name="comment"
+        id="comment"
+        placeholder="Enter a comment for today..."
+        [(ngModel)]="comment"
+      ></textarea>
+      <button class="save" (click)="saveDailyEntry()">
+        <span><mat-icon class="check">done_outline</mat-icon></span>
+      </button>
     </div>
-    <textarea
-      name="comment"
-      id="comment"
-      placeholder="Enter a comment for today..."
-      [(ngModel)]="comment"
-    ></textarea>
-    <button class="save" (click)="saveDailyEntry()">
-      <span><mat-icon class="check">done_outline</mat-icon></span>
-    </button>
   </div>
-  <div class="quote-container">
-    <div class="quote">"{{ quote.quote }}"</div>
-    <div class="author">{{ quote.author }}</div>
-    <div class="quote-credit">
-      <img
-        src="https://theysaidso.com/branding/theysaidso.png"
-        height="10"
-        width="10"
-        alt="theysaidso.com"
-      />
-      <a
-        href="https://theysaidso.com"
-        title="Powered by quotes from theysaidso.com"
-      >
-        They Said So
-      </a>
+  <div class="bottom">
+    <div class="quote-container">
+      <div class="quote">"{{ quote.quote }}"</div>
+      <div class="author">{{ quote.author }}</div>
+      <div class="quote-credit">
+        <img
+          src="https://theysaidso.com/branding/theysaidso.png"
+          height="10"
+          width="10"
+          alt="theysaidso.com"
+        />
+        <a
+          href="https://theysaidso.com"
+          title="Powered by quotes from theysaidso.com"
+        >
+          They Said So
+        </a>
+      </div>
     </div>
   </div>
 </div>

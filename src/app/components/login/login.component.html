@@ -1,10 +1,27 @@
-<div class="login">
-  <h2>Welcome!</h2>
-  <button class="google" (click)="loginWithGoogle()">
-    <img
-      class="google-logo"
-      src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg"
-    />
-    <span class="google">Sign In With Google</span>
-  </button>
+<h1 class="app-title">Momentum</h1>
+<div class="loginPage">
+  <div class="pretty">
+    <h2>Welcome to Momentum!</h2>
+    <p>
+      An app created by Grand Circus grads Sean Doody, Kenny Duke, and Alyssa
+      Meller.
+    </p>
+
+    <p>
+      Use this app to set your sights on a goal and then focus on taking small
+      steps forward each day to gain Momentum!
+    </p>
+  </div>
+  <div class="login">
+    <div class="box">
+      <div class="get-started">Get Started!</div>
+      <button class="google" (click)="loginWithGoogle()">
+        <img
+          class="google-logo"
+          src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg"
+        />
+        <span class="google">Sign In With Google</span>
+      </button>
+    </div>
+  </div>
 </div>

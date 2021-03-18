@@ -6,10 +6,14 @@ body {
 }
 
 body {
-  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-family: "Poppins", "Helvetica Neue", sans-serif;
   background-color: #9dbfe8;
 }
 
 * {
   box-sizing: border-box;
+}
+
+button:focus {
+  outline: 0px;
 }

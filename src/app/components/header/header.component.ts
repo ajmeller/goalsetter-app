@@ -11,7 +11,7 @@ import { DailyService } from 'src/app/services/daily.service';
   styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent implements OnInit {
-  isShow: boolean = true;
+  isShow: boolean = false;
   user: User = { uid: '', displayName: '' };
   dates: string[] = [];
   datesVisible: string[] = [];

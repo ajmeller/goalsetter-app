@@ -51,6 +51,12 @@ input.new-goal {
   font-size: 14pt;
 }
 
+.middle {
+  background-color: rgba(255, 255, 255, 0.55);
+  width: 100vw;
+  border-radius: 10px;
+}
+
 .inputs {
   margin: 20px 0px;
   display: flex;
@@ -77,15 +83,15 @@ input.new-goal {
 }
 
 .happy {
-  color: rgb(15, 107, 38);
+  color: #186132;
 }
 
 .medium {
-  color: rgb(255, 242, 53);
+  color: #c39b07;
 }
 
 .sad {
-  color: rgb(235, 49, 29);
+  color: #c12716;
 }
 
 textarea {

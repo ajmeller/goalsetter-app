@@ -12,6 +12,7 @@ export const environment = {
     messagingSenderId: '321861937184',
     appId: '1:321861937184:web:18544bc77ceb62e4a83445',
   },
+  apiUrl: 'https://momentum-goals.herokuapp.com',
 };
 
 /*

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Goal } from '../models/goal.interface';
+import { environment } from 'src/environments/environment.prod';
 
 @Injectable({
   providedIn: 'root',
@@ -9,7 +10,8 @@ import { Goal } from '../models/goal.interface';
 export class GoalService {
   constructor(private http: HttpClient) {}
 
-  apiUrl: string = 'http://localhost:3000';
+  apiUrl: string = environment.apiUrl;
+
   goal: Goal = { goalId: 0, goalDescription: '' };
 
   getGoals(userId: string): Observable<any> {

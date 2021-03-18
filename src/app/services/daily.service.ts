@@ -2,6 +2,7 @@ import { EventEmitter, Injectable, Output } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { DailyEntry } from '../models/daily-entry.interface';
+import { environment } from 'src/environments/environment.prod';
 
 @Injectable({
   providedIn: 'root',
@@ -9,7 +10,7 @@ import { DailyEntry } from '../models/daily-entry.interface';
 export class DailyService {
   constructor(private http: HttpClient) {}
 
-  apiUrl: string = 'http://localhost:3000';
+  apiUrl: string = environment.apiUrl;
 
   dailyEntry: DailyEntry = {
     dailyId: 0,

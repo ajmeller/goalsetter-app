@@ -9,6 +9,8 @@ import { Router } from '@angular/router';
 import { GoalService } from 'src/app/services/goal.service';
 import { Goal } from 'src/app/models/goal.interface';
 import { format, add } from 'date-fns';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { GoalDialogComponent } from '../goal-dialog/goal-dialog.component';
 
 @Component({
   selector: 'app-today',
@@ -31,7 +33,8 @@ export class TodayComponent implements OnInit {
     private dailyService: DailyService,
     private quotesService: QuotesService,
     private goalService: GoalService,
-    private router: Router
+    private router: Router,
+    private dialog: MatDialog
   ) {
     authService.getIsLoggedIn.subscribe((isLoggedIn: boolean) => {
       this.userLoggedIn = isLoggedIn;
@@ -57,6 +60,26 @@ export class TodayComponent implements OnInit {
 
   get goal(): Goal {
     return this.goalService.goal;
+  }
+
+  openGoalDialog() {
+    const dialogConfig = new MatDialogConfig();
+
+    dialogConfig.disableClose = true;
+    dialogConfig.minHeight = 240;
+    dialogConfig.minWidth = 320;
+
+    const dialogRef = this.dialog.open(GoalDialogComponent, dialogConfig);
+
+    dialogRef.afterClosed().subscribe((result: any) => {
+      this.goalService
+        .saveNewGoal(result.goal, this.user.uid)
+        .subscribe((data: any) => {
+          return null;
+        });
+      this.newGoal = result.goal;
+      this.goalService.goal.goalDescription = result.goal;
+    });
   }
 
   getTimeOfDay() {
@@ -139,16 +162,7 @@ export class TodayComponent implements OnInit {
 
         this.newGoal = this.goal.goalDescription;
       } else {
-        const firstGoal = window.prompt('Please Enter Goal');
-        if (firstGoal) {
-          this.goalService
-            .saveNewGoal(firstGoal, this.user.uid)
-            .subscribe((data: any) => {
-              return null;
-            });
-          this.newGoal = firstGoal;
-          this.goalService.goal.goalDescription = firstGoal;
-        }
+        this.openGoalDialog();
       }
     });
   }

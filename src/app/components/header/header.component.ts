@@ -53,7 +53,7 @@ export class HeaderComponent implements OnInit {
     return true;
   }
 
-  toggleDays() {
+  toggleMenu() {
     this.isShow = !this.isShow;
   }
 

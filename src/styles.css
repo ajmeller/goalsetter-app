@@ -18,5 +18,8 @@ button:focus {
   outline: 0px;
 }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+button,
+input,
+a {
+  font-family: "Poppins", "Helvetica Neue", sans-serif;
+}

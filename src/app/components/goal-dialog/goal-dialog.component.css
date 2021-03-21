@@ -1,0 +1,27 @@
+.title {
+  margin-bottom: 10px;
+}
+
+.sub-title {
+  font-size: 12pt;
+}
+
+.goal-field {
+  width: 100%;
+  margin: 10px 0px;
+  align-self: flex-start;
+}
+
+.goal-input {
+  padding: 3px;
+  font-size: 12pt;
+}
+
+.actions {
+  justify-content: center;
+}
+
+button.submit {
+  background-color: #9dbfe8;
+  text-align: center;
+}

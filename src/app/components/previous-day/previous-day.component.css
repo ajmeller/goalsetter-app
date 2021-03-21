@@ -9,3 +9,9 @@
 .sad {
   color: #c12716;
 }
+
+@media only screen and (min-width: 768px) {
+}
+
+@media only screen and (min-width: 1200px) {
+}

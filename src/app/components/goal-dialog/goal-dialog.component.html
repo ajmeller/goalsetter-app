@@ -1,11 +1,15 @@
 <div class="title" mat-dialog-title>Welcome to Momentum!</div>
 <mat-dialog-content [formGroup]="form">
   <div class="sub-title">Enter a goal to get started.</div>
-  <mat-form-field>
-    <input matInput placeholder="Goal" formControlName="goal" />
+  <mat-form-field class="goal-field">
+    <input
+      matInput
+      placeholder="Goal"
+      formControlName="goal"
+      class="goal-input"
+    />
   </mat-form-field>
 </mat-dialog-content>
-
-<mat-dialog-actions>
-  <button mat-raised-button class="submit" (click)="saveGoal()">Ok</button>
+<mat-dialog-actions class="actions">
+  <button mat-stroked-button class="submit" (click)="saveGoal()">Begin</button>
 </mat-dialog-actions>

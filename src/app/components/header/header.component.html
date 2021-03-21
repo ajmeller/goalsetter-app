@@ -1,12 +1,26 @@
 <div class="header" *ngIf="userLoggedIn">
-  <h1 class="app-title"><a [routerLink]="['/today']">Momentum</a></h1>
+  <h1 class="app-title">Momentum</h1>
   <button class="mobile-menu" (click)="toggleDays()">
     <mat-icon>menu</mat-icon>
   </button>
   <div class="header-container" *ngIf="!isShow">
     <div class="day-buttons">
-      <div *ngFor="let date of dates" (click)="goToDate(date)">
+      <div
+        class="arrow-left"
+        *ngIf="showPreviousButton"
+        (click)="showMoreDates(true)"
+      >
+        <mat-icon>keyboard_arrow_left</mat-icon>
+      </div>
+      <div *ngFor="let date of datesVisible" (click)="goToDate(date)">
         <button>{{ date }}</button>
+      </div>
+      <div
+        class="arrow-right"
+        *ngIf="showNextButton"
+        (click)="showMoreDates(false)"
+      >
+        <mat-icon>keyboard_arrow_right</mat-icon>
       </div>
     </div>
     <div class="user-actions">

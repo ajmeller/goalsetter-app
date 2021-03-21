@@ -20,6 +20,7 @@ export class DailyService {
     goal: { goalId: 0, goalDescription: '' },
   };
   dailyEntries: DailyEntry[] = [];
+  dates: string[] = [];
 
   @Output() getNewDate: EventEmitter<any> = new EventEmitter();
   @Output() hasSubmittedToday: EventEmitter<boolean> = new EventEmitter();

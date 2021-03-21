@@ -3,15 +3,14 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { DailyEntry } from '../models/daily-entry.interface';
 import { environment } from 'src/environments/environment.prod';
+import { add, format } from 'date-fns';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class DailyService {
-  constructor(private http: HttpClient) {}
-
   apiUrl: string = environment.apiUrl;
-
   dailyEntry: DailyEntry = {
     dailyId: 0,
     date: new Date(),
@@ -23,7 +22,9 @@ export class DailyService {
   dailyEntries: DailyEntry[] = [];
 
   @Output() getNewDate: EventEmitter<any> = new EventEmitter();
-  @Output() newEntrySaved: EventEmitter<boolean> = new EventEmitter();
+  @Output() hasSubmittedToday: EventEmitter<boolean> = new EventEmitter();
+
+  constructor(private http: HttpClient, private authService: AuthService) {}
 
   getDailyEntry(userId: string, date: string): Observable<any> {
     return this.http.get(`${this.apiUrl}/daily/${userId}/${date}`);

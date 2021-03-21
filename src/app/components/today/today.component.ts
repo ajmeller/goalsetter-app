@@ -115,17 +115,10 @@ export class TodayComponent implements OnInit {
       .subscribe((data: any) => {
         if (data.length > 0) {
           const daily = data[0];
-          this.dailyService.setDailyEntry(daily);
-        }
-
-        const date = add(new Date(this.dailyEntry.date), { days: 1 });
-
-        if (
-          this.dailyEntry &&
-          format(date, 'yyyy-MM-dd') === this.today &&
-          this.dailyEntry.completed
-        ) {
-          this.router.navigate([`/daily/${this.today}`]);
+          const date = add(new Date(daily.date), { days: 1 });
+          if (format(date, 'yyyy-MM-dd') === this.today && daily.completed) {
+            this.dailyService.hasSubmittedToday.emit(true);
+          }
         }
       });
   }
@@ -145,7 +138,7 @@ export class TodayComponent implements OnInit {
       this.dailyService
         .getDailyEntry(this.user.uid, this.today)
         .subscribe((data: any) => {
-          this.dailyService.newEntrySaved.emit(true);
+          this.dailyService.hasSubmittedToday.emit(true);
         });
       this.router.navigate([`/daily/${this.today}`]);
     }

@@ -8,11 +8,17 @@ import {
   AngularFirestoreDocument,
 } from '@angular/fire/firestore';
 import { EventEmitter } from '@angular/core';
+import { BehaviorSubject, from, Observable } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
+  private userOb: BehaviorSubject<Observable<any>> = new BehaviorSubject<
+    Observable<any>
+  >(null);
+  userOb$ = this.userOb.pipe(switchMap((user: Observable<any>) => user));
   constructor(
     public afs: AngularFirestore,
     public afAuth: AngularFireAuth,
@@ -27,8 +33,10 @@ export class AuthService {
         sessionStorage.setItem('user', '');
         this.parseUserData();
       }
-      this.getIsLoggedIn.emit(this.isLoggedIn);
+      //this.getIsLoggedIn.emit(this.isLoggedIn);
     });
+
+    this.userOb.next(this.afAuth.authState);
   }
 
   @Output() getIsLoggedIn: EventEmitter<boolean> = new EventEmitter();
@@ -55,14 +63,13 @@ export class AuthService {
     }
   }
 
-  googleAuth() {
-    return this.authLogin(new firebase.auth.GoogleAuthProvider());
+  googleAuth(): Observable<any> {
+    return from(this.authLogin(new firebase.auth.GoogleAuthProvider()));
   }
 
   authLogin(provider: any) {
-    return this.afAuth
-      .signInWithPopup(provider)
-      .then((result: any) => {
+    return this.afAuth.signInWithPopup(provider);
+    /*       .then((result: any) => {
         this.ngZone.run(() => {
           this.router.navigate(['today']);
         });
@@ -70,7 +77,7 @@ export class AuthService {
       })
       .catch((error) => {
         window.alert(error);
-      });
+      }); */
   }
 
   setUserData(userData: any) {
@@ -86,11 +93,12 @@ export class AuthService {
     return userRef.set(user);
   }
 
-  signOut() {
-    return this.afAuth.signOut().then(() => {
+  signOut(): Observable<any> {
+    /*     return this.afAuth.signOut().then(() => {
       sessionStorage.removeItem('user');
       this.getIsLoggedIn.emit(this.isLoggedIn);
       this.router.navigate(['login']);
-    });
+    }); */
+    return from(this.afAuth.signOut());
   }
 }

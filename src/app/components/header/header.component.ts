@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { User } from 'src/app/models/user.interface';
 import { AuthService } from 'src/app/services/auth.service';
 import { DailyService } from 'src/app/services/daily.service';
-import { format, add, parseISO } from 'date-fns';
+import { format, add } from 'date-fns';
 import { HostListener } from '@angular/core';
 
 @Component({
@@ -27,7 +27,6 @@ export class HeaderComponent implements OnInit {
     authService.getIsLoggedIn.subscribe((isLoggedIn: boolean) => {
       this.userLoggedIn = isLoggedIn;
       this.user = this.authService.user;
-      this.getAllDays();
       this.getVisibleDays();
     });
 
@@ -69,7 +68,7 @@ export class HeaderComponent implements OnInit {
     this.isShow = !this.isShow;
   }
 
-  getAllDays() {
+  getVisibleDays(dateSelected?: Date) {
     this.dailyService.getEntryDates(this.user.uid).subscribe((data: any) => {
       data.forEach((dateEntry: any) => {
         const date = add(new Date(dateEntry.date), { days: 1 });
@@ -77,36 +76,34 @@ export class HeaderComponent implements OnInit {
         this.datesRaw.push(date);
         this.dailyService.dates.push(datePretty);
       });
-    });
-  }
 
-  getVisibleDays(dateSelected?: Date) {
-    this.datesVisible = [];
-    let currentDate: Date;
-    const datesLen = this.dates.length;
-    if (!dateSelected) {
-      currentDate = this.datesRaw[datesLen - 1];
-    } else {
-      currentDate = new Date(dateSelected);
-    }
-    if (currentDate) {
-      const dateFormatted = format(currentDate, 'M-d-yyyy');
-      const datePos = this.dates.indexOf(dateFormatted);
-      if (datePos < 0) {
-        this.datesVisible = this.dates.slice(datesLen - 3, datesLen + 2);
-      }
-      if (datesLen > 3) {
-        if (datePos === 0) {
-          this.datesVisible = this.dates.slice(0, 3);
-        } else if (datePos === datesLen - 1) {
-          this.datesVisible = this.dates.slice(datePos - 2, datePos + 1);
-        } else {
-          this.datesVisible = this.dates.slice(datePos - 1, datePos + 2);
-        }
+      this.datesVisible = [];
+      let currentDate: Date;
+      const datesLen = this.datesRaw.length;
+      if (!dateSelected) {
+        currentDate = this.datesRaw[datesLen - 1];
       } else {
-        this.datesVisible = this.dates;
+        currentDate = new Date(dateSelected);
       }
-    }
+      if (currentDate) {
+        const dateFormatted = format(currentDate, 'M-d-yyyy');
+        const datePos = this.dates.indexOf(dateFormatted);
+        if (datePos < 0) {
+          this.datesVisible = this.dates.slice(datesLen - 3, datesLen + 2);
+        }
+        if (datesLen > 3) {
+          if (datePos === 0) {
+            this.datesVisible = this.dates.slice(0, 3);
+          } else if (datePos === datesLen - 1) {
+            this.datesVisible = this.dates.slice(datePos - 2, datePos + 1);
+          } else {
+            this.datesVisible = this.dates.slice(datePos - 1, datePos + 2);
+          }
+        } else {
+          this.datesVisible = this.dates;
+        }
+      }
+    });
   }
 
   goToDate(dateSelected: string) {
@@ -129,7 +126,6 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     this.user = this.authService.user;
-    this.getAllDays();
     this.getVisibleDays();
   }
 }

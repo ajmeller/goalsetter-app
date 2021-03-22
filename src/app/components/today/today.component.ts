@@ -27,6 +27,7 @@ export class TodayComponent implements OnInit {
   editGoalMode: boolean = false;
   newGoal: string = '';
   timeOfDay: string = '';
+  selected: boolean = false;
 
   constructor(
     private authService: AuthService,

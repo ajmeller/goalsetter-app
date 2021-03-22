@@ -5,11 +5,31 @@ import { AuthService } from 'src/app/services/auth.service';
 import { DailyService } from 'src/app/services/daily.service';
 import { format, add } from 'date-fns';
 import { HostListener } from '@angular/core';
+import {
+  trigger,
+  state,
+  style,
+  animate,
+  transition
+} from '@angular/animations'
+
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css'],
+  animations: [
+    trigger('popOverState', [
+      state('show', style ({
+        opacity: 1
+      })),
+      state('hide', style({
+        opacity: 0
+      })),
+      transition('show => hide', animate('600ms ease-out')),
+      transition('hide => show', animate('1000ms ease-in'))
+    ])
+  ]
 })
 export class HeaderComponent implements OnInit {
   isShow: boolean = false;
@@ -18,6 +38,7 @@ export class HeaderComponent implements OnInit {
   userLoggedIn: boolean = false;
   screenWidth: number = 0;
   datesRaw: Date[] = [];
+  show = false;
 
   constructor(
     private dailyService: DailyService,
@@ -43,6 +64,14 @@ export class HeaderComponent implements OnInit {
     this.screenWidth = window.innerWidth;
   }
 
+  get stateName() {
+    return this.show ? 'show' : 'hide'
+  }
+
+  toggle() {
+    this.show = !this.show
+  }
+
   get dates(): string[] {
     return this.dailyService.dates;
   }
@@ -66,6 +95,7 @@ export class HeaderComponent implements OnInit {
 
   toggleMenu() {
     this.isShow = !this.isShow;
+    // this.show = !this.show
   }
 
   getVisibleDays(dateSelected?: Date) {

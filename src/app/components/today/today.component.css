@@ -2,8 +2,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-evenly;
   margin: 0px 20px;
+  height: 80%;
 }
 
 .top {
@@ -92,6 +92,10 @@ input.new-goal {
   color: #c12716;
 }
 
+.selected {
+  font-weight: 600;
+}
+
 textarea {
   height: 90px;
   border-radius: 10px;
@@ -130,6 +134,10 @@ button.save:hover .check {
   color: white;
 }
 
+.quote {
+  font-size: 12pt;
+}
+
 .author {
   text-align: right;
 }
@@ -137,11 +145,11 @@ button.save:hover .check {
 .quote-credit a {
   font-size: 8px;
   text-decoration: none;
-  color: rgb(79, 79, 79);
+  color: rgb(41, 41, 41);
 }
 
 .quote-credit a:visited {
-  color: rgb(79, 79, 79);
+  color: rgb(41, 41, 41);
 }
 
 .quote-container {
@@ -170,6 +178,7 @@ button.save:hover .check {
   .middle {
     height: 340px;
     width: 90%;
+    max-width: 1000px;
   }
 
   .mood {
@@ -190,21 +199,14 @@ button.save:hover .check {
     width: 60%;
   }
 
-  .quote-container {
-    display: block;
-    margin-top: 15px;
-  }
+  @media only screen and (min-width: 1200px) {
+    .today-container {
+      justify-content: space-between;
+    }
 
-  .quote {
-    font-size: 12pt;
+    .quote-container {
+      display: block;
+      margin-top: 15px;
+    }
   }
-
-  .quote-credit {
-    position: absolute;
-    right: 1%;
-    bottom: 1%;
-  }
-}
-
-@media only screen and (min-width: 1200px) {
 }

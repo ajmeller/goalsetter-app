@@ -1,6 +1,6 @@
 <div class="header" *ngIf="userLoggedIn">
   <div class="top-nav">
-    <h1 class="app-title">Momentum</h1>
+ <h1 class="app-title" [routerLink]="['today']">Momentum</h1>
     <button class="mobile-menu" (click)="toggleMenu()" (click)="toggle()">
       <mat-icon>menu</mat-icon>
     </button>

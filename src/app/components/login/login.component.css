@@ -46,6 +46,7 @@ button.google {
   align-items: center;
   font-weight: 500;
   outline: none;
+  cursor: pointer;
 }
 
 button.google:hover {

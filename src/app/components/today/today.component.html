@@ -26,14 +26,27 @@
   <div class="middle">
     <div class="inputs">
       <div class="mood" (click)="selectMood($event)">
-        <span><mat-icon class="happy" id="happy">mood</mat-icon></span>
         <span
-          ><mat-icon class="medium" id="medium"
+          ><mat-icon
+            class="happy"
+            id="happy"
+            [ngClass]="{ selected: mood === 'happy' }"
+            >mood</mat-icon
+          ></span
+        >
+        <span
+          ><mat-icon
+            class="medium"
+            id="medium"
+            [ngClass]="{ selected: mood === 'medium' }"
             >sentiment_dissatisfied</mat-icon
           ></span
         >
         <span
-          ><mat-icon class="sad" id="sad"
+          ><mat-icon
+            class="sad"
+            id="sad"
+            [ngClass]="{ selected: mood === 'sad' }"
             >sentiment_very_dissatisfied</mat-icon
           ></span
         >

@@ -59,6 +59,7 @@
 .no-data {
   text-align: center;
   font-size: 14pt;
+  margin-top: 15px;
 }
 
 @media only screen and (min-width: 768px) {

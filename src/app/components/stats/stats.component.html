@@ -1,29 +1,31 @@
 <div class="stats-container">
   <div class="inspo">Keep up the good work!</div>
-  <tbody>
-    <tr class="first-entry">
-      <td>First Entry:</td>
-      <td>{{ datePretty }}</td>
-    </tr>
-    <tr class="days-completed">
-      <td>Total Days Completed:</td>
-      <td>{{ stats.daysCompleted }}</td>
-    </tr>
-    <tr class="percentage-completed">
-      <td>Percent Of Days Completed:</td>
-      <td>{{ percent }}</td>
-    </tr>
-    <tr class="happy-count">
-      <td>Happy Days:</td>
-      <td>{{ stats.moodCount.happy }}</td>
-    </tr>
-    <tr class="medium-count">
-      <td>Medium Days:</td>
-      <td>{{ stats.moodCount.medium }}</td>
-    </tr>
-    <tr class="sad-count">
-      <td>Sad Days:</td>
-      <td>{{ stats.moodCount.sad }}</td>
-    </tr>
-  </tbody>
+  <div class="stats-table">
+    <tbody>
+      <tr class="first-entry">
+        <td>First Entry:</td>
+        <td>{{ datePretty }}</td>
+      </tr>
+      <tr class="days-completed">
+        <td>Total Days Completed:</td>
+        <td>{{ stats.daysCompleted }}</td>
+      </tr>
+      <tr class="percentage-completed">
+        <td>Percent Of Days Completed:</td>
+        <td>{{ percent }}</td>
+      </tr>
+      <tr class="happy-count">
+        <td>Happy Days:</td>
+        <td>{{ stats.moodCount.happy }}</td>
+      </tr>
+      <tr class="medium-count">
+        <td>Medium Days:</td>
+        <td>{{ stats.moodCount.medium }}</td>
+      </tr>
+      <tr class="sad-count">
+        <td>Sad Days:</td>
+        <td>{{ stats.moodCount.sad }}</td>
+      </tr>
+    </tbody>
+  </div>
 </div>

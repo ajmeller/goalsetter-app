@@ -45,7 +45,7 @@
         [(ngModel)]="comment"
       ></textarea>
       <button class="save" (click)="saveDailyEntry()">
-        <span><mat-icon class="check">done_outline</mat-icon></span>
+        <mat-icon class="check">done</mat-icon>
       </button>
     </div>
   </div>
@@ -53,7 +53,7 @@
     <div class="quote-container">
       <div class="quote">"{{ quote.quote }}"</div>
       <div class="author">{{ quote.author }}</div>
-      <div class="quote-credit">
+      <span class="quote-credit">
         <img
           src="https://theysaidso.com/branding/theysaidso.png"
           height="10"
@@ -66,7 +66,7 @@
         >
           They Said So
         </a>
-      </div>
+      </span>
     </div>
   </div>
 </div>

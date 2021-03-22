@@ -40,31 +40,34 @@ input.new-goal {
   background-color: rgba(255, 255, 255, 0);
   border: none;
   margin-left: 5px;
+  cursor: pointer;
 }
 
 .goal button mat-icon:hover {
-  color: rgba(0, 0, 0, 0.65);
+  color: #186132;
 }
 
 .middle {
   background-color: rgba(255, 255, 255, 0.55);
-  width: 100vw;
+  width: 100%;
   border-radius: 10px;
-  height: 300px;
+  height: 280px;
+  margin-top: 15px;
 }
 
 .inputs {
-  margin: 10px 0px;
+  padding: 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  height: 100%;
 }
 
 .mood {
   display: flex;
   justify-content: space-evenly;
-  width: 100%;
+  width: 270px;
   cursor: pointer;
   margin-bottom: 10px;
 }
@@ -90,17 +93,40 @@ input.new-goal {
 }
 
 textarea {
-  height: 80px;
+  height: 90px;
   border-radius: 10px;
-  width: 90%;
+  width: 80%;
   margin-bottom: 10px;
-  padding: 10px;
+  padding: 15px;
+  font-family: "Poppins", sans-serif;
 }
 
-.save {
+button.save {
   width: 60px;
   height: 60px;
   border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.55);
+  border: 3px solid #186132;
+  position: relative;
+}
+
+.check {
+  font-size: 20pt;
+  font-weight: bold;
+  position: absolute;
+  top: 50%;
+  left: 48%;
+  transform: translate(-50%, -50%);
+  color: #186132;
+}
+
+button.save:hover {
+  background-color: #186132;
+  border: none;
+}
+
+button.save:hover .check {
+  color: white;
 }
 
 .author {
@@ -122,15 +148,35 @@ textarea {
 }
 
 @media only screen and (min-width: 768px) {
-  .quote-container {
-    display: block;
+  .welcome {
+    font-size: 22pt;
+  }
+
+  .date {
+    font-size: 14pt;
+    margin: 15px 0px;
+  }
+
+  .goal-desc {
+    font-size: 18pt;
+  }
+
+  input.new-goal {
+    font-size: 14pt;
+    width: 230px;
+  }
+
+  .middle {
+    height: 340px;
+    width: 90%;
   }
 
   .mood {
-    justify-content: center;
+    width: 40%;
   }
 
   .mood span {
+    margin: 0px 5px;
     width: 90px;
   }
 
@@ -139,7 +185,23 @@ textarea {
   }
 
   textarea {
-    height: 100px;
+    height: 120px;
+    width: 60%;
+  }
+
+  .quote-container {
+    display: block;
+    margin-top: 15px;
+  }
+
+  .quote {
+    font-size: 12pt;
+  }
+
+  .quote-credit {
+    position: absolute;
+    right: 1%;
+    bottom: 1%;
   }
 }
 

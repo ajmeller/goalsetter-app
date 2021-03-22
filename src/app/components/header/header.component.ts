@@ -23,6 +23,7 @@ export class HeaderComponent implements OnInit {
   ) {
     authService.getIsLoggedIn.subscribe((isLoggedIn: boolean) => {
       this.userLoggedIn = isLoggedIn;
+      this.getAllDays();
       this.getVisibleDays();
     });
 

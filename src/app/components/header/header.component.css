@@ -3,6 +3,7 @@
   display: flex;
   align-items: left;
   flex-direction: column;
+  margin-bottom: 30px;
 }
 
 h1.app-title {
@@ -56,7 +57,7 @@ a.stats:visited {
 }
 
 .day-nav {
-  margin: 10px 0px 20px 0px;
+  margin-top: 10px;
   display: flex;
   align-items: center;
   justify-content: space-evenly;
@@ -71,10 +72,11 @@ a.stats:visited {
 .day-button {
   font-size: 10pt;
   padding: 2px 8px;
+  background-color: rgba(255, 255, 255, 0.55);
 }
 
-.day-button {
-  background-color: rgba(255, 255, 255, 0.55);
+.day-button:hover {
+  background-color: rgba(255, 255, 255, 0.3);
 }
 
 button.arrow {
@@ -124,9 +126,5 @@ div.arrow-placeholder {
   .day-button {
     font-size: 12pt;
     padding: 2px 18px;
-  }
-
-  .day-button:hover {
-    background-color: rgba(255, 255, 255, 0.3);
   }
 }

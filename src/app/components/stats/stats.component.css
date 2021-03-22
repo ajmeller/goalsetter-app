@@ -12,37 +12,34 @@
 
 tbody {
   margin: 0px;
-  width: 290px;
+  width: 310px;
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
+  background-color: rgba(255, 255, 255, 0.55);
+  border-radius: 10px;
+  padding: 20px;
 }
 
 tr {
   display: flex;
   justify-content: space-between;
   width: 100%;
-  margin: 5px 0px;
+  margin: 8px 0px;
 }
 
 td {
   font-size: 12pt;
 }
 
-@media only screen and (min-width: 1200px) {
-  .stats-container {
-    margin-left: 30px;
-  }
-
+@media only screen and (min-width: 768px) {
   .inspo {
-    text-align: left;
     font-size: 18pt;
     margin-bottom: 20px;
   }
 
   tbody {
-    left: 1%;
-    transform: none;
-    width: 340px;
+    width: 370px;
+    padding: 20px 40px;
   }
 }

@@ -56,6 +56,20 @@ button.google {
   display: none;
 }
 
+.fa-github {
+  font-size: 14pt;
+}
+
+a,
+a:visited {
+  color: rgb(196, 70, 32);
+  text-decoration: none;
+}
+
+a:hover {
+  color: rgb(223, 99, 62);
+}
+
 @media only screen and (min-width: 768px) {
   .pretty {
     width: 35vw;

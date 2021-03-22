@@ -1,26 +1,30 @@
 <div class="previous-day-container">
   <h2 class="date">{{ datePretty }}</h2>
   <div class="previous-day" *ngIf="dailyEntry.completed">
-    <div class="goal">{{ dailyEntry.goal.goalDescription }}</div>
-    <div class="completed">{{ dailyEntry.completed }}</div>
-    <div class="mood">
-      <span class="happy" *ngIf="dailyEntry.mood === 'happy'"
-        ><mat-icon class="happy" id="happy">mood</mat-icon></span
-      >
-      <span class="medium" *ngIf="dailyEntry.mood === 'medium'"
-        ><mat-icon class="medium" id="medium"
-          >sentiment_dissatisfied</mat-icon
-        ></span
-      >
-      <span class="sad" *ngIf="dailyEntry.mood === 'sad'"
-        ><mat-icon class="sad" id="sad"
-          >sentiment_very_dissatisfied</mat-icon
-        ></span
-      >
+    <div class="goal-completed">
+      <span class="goal">{{ dailyEntry.goal.goalDescription }}</span>
+      <span class="completed"><mat-icon class="check">done</mat-icon></span>
     </div>
-    <div class="comment">{{ dailyEntry.comment }}</div>
+    <div class="mood-comment-container">
+      <div class="mood-comment">
+        <span class="happy face" *ngIf="dailyEntry.mood === 'happy'"
+          ><mat-icon class="happy face" id="happy">mood</mat-icon></span
+        >
+        <span class="medium face" *ngIf="dailyEntry.mood === 'medium'"
+          ><mat-icon class="medium face" id="medium"
+            >sentiment_dissatisfied</mat-icon
+          ></span
+        >
+        <span class="sad face" *ngIf="dailyEntry.mood === 'sad'"
+          ><mat-icon class="sad face" id="sad"
+            >sentiment_very_dissatisfied</mat-icon
+          ></span
+        >
+        <div class="comment">{{ dailyEntry.comment }}</div>
+      </div>
+    </div>
   </div>
   <div *ngIf="!dailyEntry.completed" class="no-data">
-    No data for this date.
+    Goal was not logged today. :(
   </div>
 </div>

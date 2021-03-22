@@ -1,5 +1,48 @@
-@media only screen and (min-width: 768px) {
+.stats-container {
+  position: relative;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.inspo {
+  font-size: 16pt;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+tbody {
+  margin: 0px;
+  width: 290px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+tr {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin: 5px 0px;
+}
+
+td {
+  font-size: 12pt;
 }
 
 @media only screen and (min-width: 1200px) {
+  .stats-container {
+    margin-left: 30px;
+  }
+
+  .inspo {
+    text-align: left;
+    font-size: 18pt;
+    margin-bottom: 20px;
+  }
+
+  tbody {
+    left: 1%;
+    transform: none;
+    width: 340px;
+  }
 }

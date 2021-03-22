@@ -1,5 +1,7 @@
 <div class="today-container">
   <div class="top">
+    <div class="date">{{ welcomeDate }}</div>
+
     <h2 class="welcome">Good {{ timeOfDay }}, {{ user.displayName }}</h2>
     <div class="goal">
       <div class="goal-desc" *ngIf="!editGoalMode">
@@ -19,7 +21,6 @@
         }}</mat-icon>
       </button>
     </div>
-    <div class="date">{{ welcomeDate }}</div>
   </div>
 
   <div class="middle">

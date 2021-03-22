@@ -127,6 +127,9 @@ textarea {
 }
 
 @media only screen and (min-width: 768px) {
+  .quote-container {
+    display: block;
+  }
 }
 
 @media only screen and (min-width: 1200px) {

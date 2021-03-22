@@ -1,4 +1,36 @@
-.happy {
+.previous-day-container {
+  margin-top: 15px;
+}
+
+.date {
+  text-align: center;
+  font-size: 18pt;
+}
+
+.goal-completed {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.goal {
+  font-size: 14pt;
+  margin-right: 10px;
+}
+
+.mood-comment {
+  display: flex;
+  margin: 10px 20px;
+}
+
+.face {
+  font-size: 45px;
+  width: 45px;
+  margin-right: 15px;
+}
+
+.happy,
+.check {
   color: #186132;
 }
 
@@ -10,7 +42,39 @@
   color: #c12716;
 }
 
+.comment {
+  font-size: 12pt;
+  margin-top: 5px;
+}
+
+.no-data {
+  text-align: center;
+  font-size: 12pt;
+}
+
 @media only screen and (min-width: 768px) {
+  .date {
+    font-size: 22pt;
+  }
+
+  .goal-completed {
+    margin-bottom: 10px;
+  }
+
+  .goal {
+    font-size: 18pt;
+  }
+
+  .mood-comment-container {
+    width: 320px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .no-data {
+    font-size: 14pt;
+  }
 }
 
 @media only screen and (min-width: 1200px) {

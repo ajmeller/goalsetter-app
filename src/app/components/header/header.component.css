@@ -9,6 +9,11 @@
 h1.app-title {
   margin: 10px;
   font-size: 22pt;
+  cursor: pointer;
+}
+
+h1.app-title:focus {
+  outline: none;
 }
 
 .mobile-menu {

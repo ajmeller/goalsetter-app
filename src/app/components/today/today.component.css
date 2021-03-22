@@ -157,10 +157,6 @@ button.save:hover .check {
 }
 
 @media only screen and (min-width: 768px) {
-  .today-container {
-    justify-content: space-between;
-  }
-
   .welcome {
     font-size: 22pt;
   }
@@ -203,8 +199,14 @@ button.save:hover .check {
     width: 60%;
   }
 
-  .quote-container {
-    display: block;
-    margin-top: 15px;
+  @media only screen and (min-width: 1200px) {
+    .today-container {
+      justify-content: space-between;
+    }
+
+    .quote-container {
+      display: block;
+      margin-top: 15px;
+    }
   }
 }

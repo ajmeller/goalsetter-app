@@ -1,10 +1,10 @@
 <div class="header" *ngIf="userLoggedIn">
   <div class="top-nav">
     <h1 class="app-title">Momentum</h1>
-    <button class="mobile-menu" (click)="toggleMenu()">
+    <button class="mobile-menu" (click)="toggleMenu()" (click)="toggle()">
       <mat-icon>menu</mat-icon>
     </button>
-    <div class="user-actions" *ngIf="isShow || screenWidth > 766">
+    <div [@popOverState]="stateName" class="user-actions" *ngIf="isShow || screenWidth > 766">
       <a class="stats" [routerLink]="['/stats']">Stats</a>
       <button class="sign-out" (click)="signOut()">Sign out</button>
     </div>

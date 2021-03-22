@@ -2,33 +2,32 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 90vh;
   justify-content: space-evenly;
   margin: 0px 20px;
-}
-
-h1,
-h2 {
-  margin: 0px;
-  margin-bottom: 10px;
-}
-
-h2 {
-  font-size: 22pt;
 }
 
 .top {
   text-align: center;
 }
 
+.welcome {
+  font-size: 16pt;
+}
+
+.date {
+  font-size: 12pt;
+  margin: 9px 0px;
+}
+
 .goal {
   display: flex;
   justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
 }
 
 .goal-desc {
-  font-size: 18pt;
-  margin-bottom: 10px;
+  font-size: 14pt;
 }
 
 input.new-goal {
@@ -47,18 +46,15 @@ input.new-goal {
   color: rgba(0, 0, 0, 0.65);
 }
 
-.date {
-  font-size: 14pt;
-}
-
 .middle {
   background-color: rgba(255, 255, 255, 0.55);
   width: 100vw;
   border-radius: 10px;
+  height: 300px;
 }
 
 .inputs {
-  margin: 20px 0px;
+  margin: 10px 0px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -67,19 +63,18 @@ input.new-goal {
 
 .mood {
   display: flex;
-  justify-content: center;
-  align-items: space-between;
+  justify-content: space-evenly;
   width: 100%;
   cursor: pointer;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 .mood span {
-  width: 90px;
+  width: 70px;
 }
 
 .mood mat-icon {
-  font-size: 90px;
+  font-size: 70px;
 }
 
 .happy {
@@ -95,7 +90,7 @@ input.new-goal {
 }
 
 textarea {
-  height: 100px;
+  height: 80px;
   border-radius: 10px;
   width: 90%;
   margin-bottom: 10px;
@@ -129,6 +124,22 @@ textarea {
 @media only screen and (min-width: 768px) {
   .quote-container {
     display: block;
+  }
+
+  .mood {
+    justify-content: center;
+  }
+
+  .mood span {
+    width: 90px;
+  }
+
+  .mood mat-icon {
+    font-size: 90px;
+  }
+
+  textarea {
+    height: 100px;
   }
 }
 

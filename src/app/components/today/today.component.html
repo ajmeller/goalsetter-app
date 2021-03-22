@@ -1,8 +1,8 @@
 <div class="today-container">
   <div class="top">
+    <div class="welcome">Good {{ timeOfDay }}, {{ user.displayName }}</div>
     <div class="date">{{ welcomeDate }}</div>
 
-    <h2 class="welcome">Good {{ timeOfDay }}, {{ user.displayName }}</h2>
     <div class="goal">
       <div class="goal-desc" *ngIf="!editGoalMode">
         {{ goal.goalDescription }}

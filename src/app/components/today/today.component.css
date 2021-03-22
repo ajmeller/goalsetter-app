@@ -99,6 +99,7 @@ textarea {
   margin-bottom: 10px;
   padding: 15px;
   font-family: "Poppins", sans-serif;
+  resize: none;
 }
 
 button.save {

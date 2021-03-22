@@ -3,7 +3,8 @@ import { Router } from '@angular/router';
 import { User } from 'src/app/models/user.interface';
 import { AuthService } from 'src/app/services/auth.service';
 import { DailyService } from 'src/app/services/daily.service';
-import { format, add } from 'date-fns';
+import { format, add, parseISO } from 'date-fns';
+import { HostListener } from '@angular/core';
 
 @Component({
   selector: 'app-header',
@@ -15,6 +16,8 @@ export class HeaderComponent implements OnInit {
   user: User = { uid: '', displayName: '' };
   datesVisible: string[] = [];
   userLoggedIn: boolean = false;
+  screenWidth: number = 0;
+  datesRaw: Date[] = [];
 
   constructor(
     private dailyService: DailyService,
@@ -23,6 +26,7 @@ export class HeaderComponent implements OnInit {
   ) {
     authService.getIsLoggedIn.subscribe((isLoggedIn: boolean) => {
       this.userLoggedIn = isLoggedIn;
+      this.user = this.authService.user;
       this.getAllDays();
       this.getVisibleDays();
     });
@@ -31,9 +35,16 @@ export class HeaderComponent implements OnInit {
       const date = add(new Date(newDate), { days: 1 });
       this.getVisibleDays(date);
     });
+
+    this.onResize();
   }
 
-  get dates() {
+  @HostListener('window:resize', ['$event'])
+  onResize() {
+    this.screenWidth = window.innerWidth;
+  }
+
+  get dates(): string[] {
     return this.dailyService.dates;
   }
 
@@ -63,6 +74,7 @@ export class HeaderComponent implements OnInit {
       data.forEach((dateEntry: any) => {
         const date = add(new Date(dateEntry.date), { days: 1 });
         const datePretty = format(date, 'M-d-yyyy');
+        this.datesRaw.push(date);
         this.dailyService.dates.push(datePretty);
       });
     });
@@ -73,25 +85,27 @@ export class HeaderComponent implements OnInit {
     let currentDate: Date;
     const datesLen = this.dates.length;
     if (!dateSelected) {
-      currentDate = new Date(this.dates[datesLen - 1]);
+      currentDate = this.datesRaw[datesLen - 1];
     } else {
-      currentDate = dateSelected;
+      currentDate = new Date(dateSelected);
     }
-    const dateFormatted = format(currentDate, 'M-d-yyyy');
-    const datePos = this.dates.indexOf(dateFormatted);
-    if (datePos < 0) {
-      this.datesVisible = this.dates.slice(datesLen - 3, datesLen + 2);
-    }
-    if (datesLen > 3) {
-      if (datePos === 0) {
-        this.datesVisible = this.dates.slice(0, 3);
-      } else if (datePos === datesLen - 1) {
-        this.datesVisible = this.dates.slice(datePos - 2, datePos + 1);
-      } else {
-        this.datesVisible = this.dates.slice(datePos - 1, datePos + 2);
+    if (currentDate) {
+      const dateFormatted = format(currentDate, 'M-d-yyyy');
+      const datePos = this.dates.indexOf(dateFormatted);
+      if (datePos < 0) {
+        this.datesVisible = this.dates.slice(datesLen - 3, datesLen + 2);
       }
-    } else {
-      this.datesVisible = this.dates;
+      if (datesLen > 3) {
+        if (datePos === 0) {
+          this.datesVisible = this.dates.slice(0, 3);
+        } else if (datePos === datesLen - 1) {
+          this.datesVisible = this.dates.slice(datePos - 2, datePos + 1);
+        } else {
+          this.datesVisible = this.dates.slice(datePos - 1, datePos + 2);
+        }
+      } else {
+        this.datesVisible = this.dates;
+      }
     }
   }
 

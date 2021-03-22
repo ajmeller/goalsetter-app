@@ -21,13 +21,14 @@
   background-color: rgba(255, 255, 255, 0.55);
 }
 
-h1 {
-  margin: 30px 0px;
+h1.app-title {
+  margin-top: 30px;
   text-align: center;
+  font-size: 20pt;
 }
 
 .get-started {
-  font-size: 18pt;
+  font-size: 16pt;
   margin-bottom: 10px;
 }
 
@@ -47,6 +48,10 @@ button.google {
   outline: none;
 }
 
+button.google:hover {
+  background-color: rgba(245, 245, 245, 0.726);
+}
+
 .google-logo {
   height: 20px;
   padding-right: 10px;
@@ -62,17 +67,17 @@ button.google {
 
 a,
 a:visited {
-  color: rgb(196, 70, 32);
+  color: #1a753a;
   text-decoration: none;
 }
 
 a:hover {
-  color: rgb(223, 99, 62);
+  color: #c12716;
 }
 
 @media only screen and (min-width: 768px) {
   .pretty {
-    width: 35vw;
+    width: 30vw;
     background-color: rgba(255, 255, 255, 0.55);
     height: 100vh;
     border-radius: 8px;
@@ -84,42 +89,20 @@ a:hover {
     padding: 0px 40px;
   }
 
-  .app-title {
+  h1.app-title {
     display: none;
   }
 
-  .login {
-    width: 65vw;
-    height: 100vh;
-    align-items: center;
+  h2 {
+    font-size: 18pt;
   }
 
-  .box {
-    width: 45%;
-    margin: 40px 20px 20px;
-  }
-}
-
-@media only screen and (min-width: 1200px) {
-  .pretty {
-    width: 35vw;
-    background-color: rgba(255, 255, 255, 0.55);
-    height: 100vh;
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    text-align: center;
-    padding: 0px 40px;
-  }
-
-  .app-title {
-    display: none;
+  .pretty p {
+    font-size: 12pt;
   }
 
   .login {
-    width: 65vw;
+    width: 70vw;
     height: 100vh;
     align-items: center;
   }

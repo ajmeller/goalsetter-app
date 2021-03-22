@@ -1,4 +1,46 @@
-.happy {
+.date {
+  text-align: center;
+  font-size: 18pt;
+  margin: 0px;
+}
+
+.goal-completed {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 10px 0px;
+}
+
+.goal {
+  font-size: 16pt;
+  margin-right: 10px;
+}
+
+.mood-comment-container {
+  width: 320px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.mood-comment {
+  display: flex;
+  margin: 10px 20px;
+  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.55);
+  padding: 15px;
+}
+
+.face {
+  font-size: 45px;
+  width: 45px;
+  height: 45px;
+  margin-right: 15px;
+  align-self: center;
+}
+
+.happy,
+.check {
   color: #186132;
 }
 
@@ -8,4 +50,42 @@
 
 .sad {
   color: #c12716;
+}
+
+.comment {
+  font-size: 14pt;
+}
+
+.no-data {
+  text-align: center;
+  font-size: 14pt;
+}
+
+@media only screen and (min-width: 768px) {
+  .date {
+    font-size: 22pt;
+  }
+
+  .goal-completed {
+    margin-bottom: 10px;
+  }
+
+  .goal {
+    font-size: 18pt;
+  }
+
+  .mood-comment-container {
+    margin-top: 10px;
+    width: 480px;
+  }
+
+  .mood-comment {
+    padding: 20px;
+  }
+
+  .face {
+    font-size: 60px;
+    width: 60px;
+    height: 60px;
+  }
 }

@@ -1,17 +1,35 @@
 <div class="header" *ngIf="userLoggedIn">
-  <h1 class="app-title"><a [routerLink]="['/today']">Momentum</a></h1>
-  <button class="mobile-menu" (click)="toggleDays()">
-    <mat-icon>menu</mat-icon>
-  </button>
-  <div class="header-container" *ngIf="!isShow">
-    <div class="day-buttons">
-      <div *ngFor="let date of dates" (click)="goToDate(date)">
-        <button>{{ date }}</button>
-      </div>
-    </div>
-    <div class="user-actions">
-      <button class="stats" [routerLink]="['/stats']">Stats</button>
+  <div class="top-nav">
+    <h1 class="app-title">Momentum</h1>
+    <button class="mobile-menu" (click)="toggleMenu()">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <div class="user-actions" *ngIf="isShow || screenWidth > 766">
+      <a class="stats" [routerLink]="['/stats']">Stats</a>
       <button class="sign-out" (click)="signOut()">Sign out</button>
     </div>
+  </div>
+  <div class="day-nav">
+    <button
+      class="arrow left"
+      *ngIf="showPreviousButton"
+      (click)="showMoreDates(true)"
+    >
+      <mat-icon>keyboard_arrow_left</mat-icon>
+    </button>
+    <div *ngIf="!showPreviousButton" class="arrow-placeholder"></div>
+    <div class="day-buttons">
+      <div *ngFor="let date of datesVisible" (click)="goToDate(date)">
+        <button mat-flat-button class="day-button">{{ date }}</button>
+      </div>
+    </div>
+    <button
+      class="arrow right"
+      *ngIf="showNextButton"
+      (click)="showMoreDates(false)"
+    >
+      <mat-icon>keyboard_arrow_right</mat-icon>
+    </button>
+    <div *ngIf="!showNextButton" class="arrow-placeholder"></div>
   </div>
 </div>

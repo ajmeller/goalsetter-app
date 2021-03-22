@@ -16,8 +16,8 @@ export class PreviousDayComponent implements OnInit {
     private authService: AuthService,
     private route: ActivatedRoute
   ) {
-    dailyService.newEntrySaved.subscribe((newEntrySaved: boolean) => {
-      if (newEntrySaved) {
+    dailyService.hasSubmittedToday.subscribe((hasSubmittedToday: boolean) => {
+      if (hasSubmittedToday) {
         this.getDailyEntry();
       }
     });

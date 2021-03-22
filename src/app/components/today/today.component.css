@@ -2,33 +2,32 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 90vh;
   justify-content: space-evenly;
   margin: 0px 20px;
-}
-
-h1,
-h2 {
-  margin: 0px;
-  margin-bottom: 10px;
-}
-
-h2 {
-  font-size: 22pt;
 }
 
 .top {
   text-align: center;
 }
 
+.welcome {
+  font-size: 16pt;
+}
+
+.date {
+  font-size: 12pt;
+  margin: 9px 0px;
+}
+
 .goal {
   display: flex;
   justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
 }
 
 .goal-desc {
-  font-size: 18pt;
-  margin-bottom: 10px;
+  font-size: 14pt;
 }
 
 input.new-goal {
@@ -41,45 +40,44 @@ input.new-goal {
   background-color: rgba(255, 255, 255, 0);
   border: none;
   margin-left: 5px;
+  cursor: pointer;
 }
 
 .goal button mat-icon:hover {
-  color: rgba(0, 0, 0, 0.65);
-}
-
-.date {
-  font-size: 14pt;
+  color: #186132;
 }
 
 .middle {
   background-color: rgba(255, 255, 255, 0.55);
-  width: 100vw;
+  width: 100%;
   border-radius: 10px;
+  height: 280px;
+  margin-top: 15px;
 }
 
 .inputs {
-  margin: 20px 0px;
+  padding: 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  height: 100%;
 }
 
 .mood {
   display: flex;
-  justify-content: center;
-  align-items: space-between;
-  width: 100%;
+  justify-content: space-evenly;
+  width: 270px;
   cursor: pointer;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 .mood span {
-  width: 90px;
+  width: 70px;
 }
 
 .mood mat-icon {
-  font-size: 90px;
+  font-size: 70px;
 }
 
 .happy {
@@ -95,17 +93,41 @@ input.new-goal {
 }
 
 textarea {
-  height: 100px;
+  height: 90px;
   border-radius: 10px;
-  width: 90%;
+  width: 80%;
   margin-bottom: 10px;
-  padding: 10px;
+  padding: 15px;
+  font-family: "Poppins", sans-serif;
+  resize: none;
 }
 
-.save {
+button.save {
   width: 60px;
   height: 60px;
   border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.55);
+  border: 3px solid #186132;
+  position: relative;
+}
+
+.check {
+  font-size: 20pt;
+  font-weight: bold;
+  position: absolute;
+  top: 50%;
+  left: 48%;
+  transform: translate(-50%, -50%);
+  color: #186132;
+}
+
+button.save:hover {
+  background-color: #186132;
+  border: none;
+}
+
+button.save:hover .check {
+  color: white;
 }
 
 .author {
@@ -124,4 +146,65 @@ textarea {
 
 .quote-container {
   display: none;
+}
+
+@media only screen and (min-width: 768px) {
+  .welcome {
+    font-size: 22pt;
+  }
+
+  .date {
+    font-size: 14pt;
+    margin: 15px 0px;
+  }
+
+  .goal-desc {
+    font-size: 18pt;
+  }
+
+  input.new-goal {
+    font-size: 14pt;
+    width: 230px;
+  }
+
+  .middle {
+    height: 340px;
+    width: 90%;
+  }
+
+  .mood {
+    width: 40%;
+  }
+
+  .mood span {
+    margin: 0px 5px;
+    width: 90px;
+  }
+
+  .mood mat-icon {
+    font-size: 90px;
+  }
+
+  textarea {
+    height: 120px;
+    width: 60%;
+  }
+
+  .quote-container {
+    display: block;
+    margin-top: 15px;
+  }
+
+  .quote {
+    font-size: 12pt;
+  }
+
+  .quote-credit {
+    position: absolute;
+    right: 1%;
+    bottom: 1%;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
 }

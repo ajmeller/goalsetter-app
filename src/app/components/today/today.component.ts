@@ -138,12 +138,9 @@ export class TodayComponent implements OnInit {
           this.goal.goalId
         )
         .subscribe((data: any) => {});
-      this.dailyService
-        .getDailyEntry(this.user.uid, this.today)
-        .subscribe((data: any) => {
-          this.dailyService.hasSubmittedToday.emit(true);
-        });
-      this.router.navigate([`/daily/${this.today}`]);
+      setTimeout(() => {
+        this.router.navigate([`/daily/${this.today}`]);
+      }, 500);
     }
   }
 

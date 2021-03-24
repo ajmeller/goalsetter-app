@@ -15,13 +15,7 @@ export class PreviousDayComponent implements OnInit {
     private dailyService: DailyService,
     private authService: AuthService,
     private route: ActivatedRoute
-  ) {
-    dailyService.hasSubmittedToday.subscribe((hasSubmittedToday: boolean) => {
-      if (hasSubmittedToday) {
-        this.getDailyEntry();
-      }
-    });
-  }
+  ) {}
 
   datePretty: string = '';
 

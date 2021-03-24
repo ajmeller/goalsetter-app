@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable, Output } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Goal } from '../models/goal.interface';
@@ -11,8 +11,9 @@ export class GoalService {
   constructor(private http: HttpClient) {}
 
   apiUrl: string = environment.apiUrl;
-
   goal: Goal = { goalId: 0, goalDescription: '' };
+
+  @Output() savedNewGoal: EventEmitter<boolean> = new EventEmitter();
 
   getGoals(userId: string): Observable<any> {
     return this.http.get(`${this.apiUrl}/goals/${userId}`);

@@ -1,14 +1,23 @@
 <div class="header" *ngIf="userLoggedIn">
   <div class="top-nav">
- <h1 class="app-title" [routerLink]="['today']">Momentum</h1>
-    <button class="mobile-menu" (click)="toggleMenu()" (click)="toggle()">
-      <mat-icon>menu</mat-icon>
-    </button>
-    <div [@popOverState]="stateName" class="user-actions" *ngIf="isShow || screenWidth > 766">
-      <a class="stats" [routerLink]="['/stats']">Stats</a>
-      <button class="sign-out" (click)="signOut()">Sign out</button>
+    <h1 class="app-title" [routerLink]="['today']">Momentum</h1>
+    <div class="mobile-menu">
+      <button class="mobile" (click)="toggleMenu()" (click)="toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <div [@popOverState]="stateName" class="user-actions" *ngIf="isShow">
+        <a class="stats" [routerLink]="['/stats']">Stats</a>
+        <button class="sign-out" (click)="signOut()">Sign out</button>
+      </div>
+    </div>
+    <div class="desktop-menu">
+      <div class="user-actions">
+        <a class="stats" [routerLink]="['/stats']">Stats</a>
+        <button class="sign-out" (click)="signOut()">Sign out</button>
+      </div>
     </div>
   </div>
+
   <div class="day-nav">
     <button
       class="arrow left"

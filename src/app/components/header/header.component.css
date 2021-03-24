@@ -16,7 +16,7 @@ h1.app-title:focus {
   outline: none;
 }
 
-.mobile-menu {
+.mobile {
   position: absolute;
   top: 2%;
   right: 3%;
@@ -26,13 +26,17 @@ h1.app-title:focus {
   border: none;
 }
 
-.mobile-menu mat-icon {
+.mobile mat-icon {
   font-size: 24pt;
 }
 
 .hide {
   display: none;
   pointer-events: none;
+}
+
+.desktop-menu {
+  display: none;
 }
 
 .user-actions {
@@ -99,6 +103,10 @@ div.arrow-placeholder {
 @media only screen and (min-width: 768px) {
   .mobile-menu {
     display: none;
+  }
+
+  .desktop-menu {
+    display: block;
   }
 
   .top-nav {

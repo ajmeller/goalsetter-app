@@ -52,7 +52,7 @@ input.new-goal {
   width: 100%;
   border-radius: 10px;
   height: 280px;
-  margin-top: 15px;
+  margin: 15px 0px;
 }
 
 .inputs {

@@ -4,15 +4,13 @@ import { User } from 'src/app/models/user.interface';
 import { AuthService } from 'src/app/services/auth.service';
 import { DailyService } from 'src/app/services/daily.service';
 import { format, add } from 'date-fns';
-import { HostListener } from '@angular/core';
 import {
   trigger,
   state,
   style,
   animate,
-  transition
-} from '@angular/animations'
-
+  transition,
+} from '@angular/animations';
 
 @Component({
   selector: 'app-header',
@@ -20,25 +18,30 @@ import {
   styleUrls: ['./header.component.css'],
   animations: [
     trigger('popOverState', [
-      state('show', style ({
-        opacity: 1
-      })),
-      state('hide', style({
-        opacity: 0
-      })),
+      state(
+        'show',
+        style({
+          opacity: 1,
+        })
+      ),
+      state(
+        'hide',
+        style({
+          opacity: 0,
+        })
+      ),
       transition('show => hide', animate('600ms ease-out')),
-      transition('hide => show', animate('1000ms ease-in'))
-    ])
-  ]
+      transition('hide => show', animate('1000ms ease-in')),
+    ]),
+  ],
 })
 export class HeaderComponent implements OnInit {
   isShow: boolean = false;
+  show = false;
   user: User = { uid: '', displayName: '' };
   datesVisible: string[] = [];
   userLoggedIn: boolean = false;
-  screenWidth: number = 0;
   datesRaw: Date[] = [];
-  show = false;
 
   constructor(
     private dailyService: DailyService,
@@ -55,21 +58,18 @@ export class HeaderComponent implements OnInit {
       const date = add(new Date(newDate), { days: 1 });
       this.getVisibleDays(date);
     });
-
-    this.onResize();
-  }
-
-  @HostListener('window:resize', ['$event'])
-  onResize() {
-    this.screenWidth = window.innerWidth;
   }
 
   get stateName() {
-    return this.show ? 'show' : 'hide'
+    return this.show ? 'show' : 'hide';
   }
 
   toggle() {
-    this.show = !this.show
+    this.show = !this.show;
+  }
+
+  toggleMenu() {
+    this.isShow = !this.isShow;
   }
 
   get dates(): string[] {
@@ -93,47 +93,47 @@ export class HeaderComponent implements OnInit {
     return true;
   }
 
-  toggleMenu() {
-    this.isShow = !this.isShow;
-    // this.show = !this.show
-  }
-
   getVisibleDays(dateSelected?: Date) {
-    this.dailyService.getEntryDates(this.user.uid).subscribe((data: any) => {
-      data.forEach((dateEntry: any) => {
-        const date = add(new Date(dateEntry.date), { days: 1 });
-        const datePretty = format(date, 'M-d-yyyy');
-        this.datesRaw.push(date);
-        this.dailyService.dates.push(datePretty);
-      });
+    this.datesRaw = [];
+    this.dailyService.dates = [];
+    this.datesVisible = [];
 
-      this.datesVisible = [];
-      let currentDate: Date;
-      const datesLen = this.datesRaw.length;
-      if (!dateSelected) {
-        currentDate = this.datesRaw[datesLen - 1];
-      } else {
-        currentDate = new Date(dateSelected);
-      }
-      if (currentDate) {
-        const dateFormatted = format(currentDate, 'M-d-yyyy');
-        const datePos = this.dates.indexOf(dateFormatted);
-        if (datePos < 0) {
-          this.datesVisible = this.dates.slice(datesLen - 3, datesLen + 2);
-        }
-        if (datesLen > 3) {
-          if (datePos === 0) {
-            this.datesVisible = this.dates.slice(0, 3);
-          } else if (datePos === datesLen - 1) {
-            this.datesVisible = this.dates.slice(datePos - 2, datePos + 1);
-          } else {
-            this.datesVisible = this.dates.slice(datePos - 1, datePos + 2);
-          }
+    if (this.userLoggedIn) {
+      this.dailyService.getEntryDates(this.user.uid).subscribe((data: any) => {
+        data.forEach((dateEntry: any) => {
+          const date = add(new Date(dateEntry.date), { days: 1 });
+          const datePretty = format(date, 'M-d-yyyy');
+          this.datesRaw.push(date);
+          this.dailyService.dates.push(datePretty);
+        });
+
+        let currentDate: Date;
+        const datesLen = this.datesRaw.length;
+        if (!dateSelected) {
+          currentDate = this.datesRaw[datesLen - 1];
         } else {
-          this.datesVisible = this.dates;
+          currentDate = new Date(dateSelected);
         }
-      }
-    });
+        if (currentDate) {
+          const dateFormatted = format(currentDate, 'M-d-yyyy');
+          const datePos = this.dates.indexOf(dateFormatted);
+          if (datePos < 0) {
+            this.datesVisible = this.dates.slice(datesLen - 3, datesLen + 2);
+          }
+          if (datesLen > 3) {
+            if (datePos === 0) {
+              this.datesVisible = this.dates.slice(0, 3);
+            } else if (datePos === datesLen - 1) {
+              this.datesVisible = this.dates.slice(datePos - 2, datePos + 1);
+            } else {
+              this.datesVisible = this.dates.slice(datePos - 1, datePos + 2);
+            }
+          } else {
+            this.datesVisible = this.dates;
+          }
+        }
+      });
+    }
   }
 
   goToDate(dateSelected: string) {

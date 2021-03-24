@@ -18,7 +18,7 @@ import { GoalDialogComponent } from '../goal-dialog/goal-dialog.component';
   styleUrls: ['./today.component.css'],
 })
 export class TodayComponent implements OnInit {
-  userLoggedIn: boolean = false;
+  //userLoggedIn: boolean = false;
   quote: Quote = { quote: '', author: '' };
   welcomeDate: string = format(new Date(), 'EEE. MMMM do, yyyy');
   today: string = format(new Date(), 'yyyy-MM-dd');
@@ -29,26 +29,8 @@ export class TodayComponent implements OnInit {
   timeOfDay: string = '';
   selected: boolean = false;
 
-  constructor(
-    private authService: AuthService,
-    private dailyService: DailyService,
-    private quotesService: QuotesService,
-    private goalService: GoalService,
-    private router: Router,
-    private dialog: MatDialog
-  ) {
-    authService.getIsLoggedIn.subscribe((isLoggedIn: boolean) => {
-      this.userLoggedIn = isLoggedIn;
-      if (this.userLoggedIn) {
-        this.getTimeOfDay();
-        this.setQuote();
-        this.getEntryForToday();
-
-        if (this.newGoal == '') {
-          this.getGoal();
-        }
-      }
-    });
+  get userLoggedIn(): boolean {
+    return this.authService.isLoggedIn;
   }
 
   get user(): User {
@@ -63,6 +45,27 @@ export class TodayComponent implements OnInit {
     return this.goalService.goal;
   }
 
+  constructor(
+    private authService: AuthService,
+    private dailyService: DailyService,
+    private quotesService: QuotesService,
+    private goalService: GoalService,
+    private router: Router,
+    private dialog: MatDialog
+  ) {
+    authService.getIsLoggedIn.subscribe((isLoggedIn: boolean) => {
+      if (isLoggedIn) {
+        this.getTimeOfDay();
+        this.setQuote();
+        this.getEntryForToday();
+
+        if (this.newGoal == '') {
+          this.getGoal();
+        }
+      }
+    });
+  }
+
   openGoalDialog() {
     const dialogConfig = new MatDialogConfig();
 
@@ -75,11 +78,10 @@ export class TodayComponent implements OnInit {
     dialogRef.afterClosed().subscribe((result: any) => {
       this.goalService
         .saveNewGoal(result.goal, this.user.uid)
-        .subscribe((data: any) => {
-          return null;
-        });
-      this.newGoal = result.goal;
-      this.goalService.goal.goalDescription = result.goal;
+        .subscribe((data: any) => {});
+      setTimeout(() => {
+        this.getGoal();
+      }, 500);
     });
   }
 
@@ -153,7 +155,6 @@ export class TodayComponent implements OnInit {
           goalId: currentGoal.goal_id,
           goalDescription: currentGoal.goal_description,
         };
-
         this.newGoal = this.goal.goalDescription;
       } else {
         this.openGoalDialog();
@@ -166,14 +167,14 @@ export class TodayComponent implements OnInit {
   }
 
   saveNewGoal() {
+    this.editGoalMode = !this.editGoalMode;
+
     this.goalService
       .saveNewGoal(this.newGoal, this.user.uid)
-      .subscribe((data: any) => {
-        return null;
-      });
-
-    this.getGoal();
-    this.editGoalMode = !this.editGoalMode;
+      .subscribe((data: any) => {});
+    setTimeout(() => {
+      this.getGoal();
+    }, 500);
   }
 
   ngOnInit(): void {
